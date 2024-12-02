@@ -9,14 +9,14 @@ const projectController = {
       console.log('Datos recibidos:', req.body);
       console.log('Archivo recibido:', req.file);
 
-      const { name, location, image, available_units, reserved_units, sold_units } = req.body;
+      const { name, location, image, edificio, available_units, reserved_units, sold_units } = req.body;
       const brochurePath = req.file ? `/uploads/${req.file.filename}` : null;
       const pool = getPool();
       
       console.log('Insertando en la base de datos');
       const [result] = await pool.query(
-        'INSERT INTO projects (name, location, image, available_units, reserved_units, sold_units, brochure) VALUES (?, ?, ?, ?, ?, ?, ?)',
-        [name, location, image, available_units, reserved_units, sold_units, brochurePath]
+        'INSERT INTO projects (name, location, image, edificio, available_units, reserved_units, sold_units, brochure) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        [name, location, image, edificio, available_units, reserved_units, sold_units, brochurePath]
       );
   
       console.log('Proyecto insertado con éxito');
@@ -25,6 +25,7 @@ const projectController = {
         name,
         location,
         image,
+        edificio,
         available_units,
         reserved_units,
         sold_units,
