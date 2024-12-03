@@ -7,7 +7,7 @@ class ClienteService {
       SELECT c.*, 
         GROUP_CONCAT(DISTINCT e.id) AS emprendimientos,
         GROUP_CONCAT(DISTINCT t.id) AS tipologias
-      FROM Clientes c
+      FROM clientes c
       LEFT JOIN ClienteEmprendimiento ce ON c.id = ce.cliente_id
       LEFT JOIN emprendimientos e ON ce.emprendimiento_id = e.id
       LEFT JOIN ClienteTipologia ct ON c.id = ct.cliente_id
