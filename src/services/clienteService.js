@@ -3,23 +3,28 @@ const { getPool } = require('../config/database');
 class ClienteService {
   async getAllClientes() {
     const pool = getPool();
-    const [rows] = await pool.query(`
-      SELECT c.*, 
-        GROUP_CONCAT(DISTINCT e.id) AS emprendimientos,
-        GROUP_CONCAT(DISTINCT t.id) AS tipologias
-      FROM clientes c
-      LEFT JOIN ClienteEmprendimiento ce ON c.id = ce.cliente_id
-      LEFT JOIN emprendimientos e ON ce.emprendimiento_id = e.id
-      LEFT JOIN ClienteTipologia ct ON c.id = ct.cliente_id
-      LEFT JOIN tipologias t ON ct.tipologia_id = t.id
-      GROUP BY c.id
-    `);
-    
-    return rows.map(row => ({
-      ...row,
-      emprendimientos: row.emprendimientos ? row.emprendimientos.split(',').map(Number) : [],
-      tipologias: row.tipologias ? row.tipologias.split(',').map(Number) : []
-    }));
+    try {
+      const [rows] = await pool.query(`
+        SELECT c.*, 
+          GROUP_CONCAT(DISTINCT e.id) AS emprendimientos,
+          GROUP_CONCAT(DISTINCT t.id) AS tipologias
+        FROM clientes c
+        LEFT JOIN ClienteEmprendimiento ce ON c.id = ce.cliente_id
+        LEFT JOIN emprendimientos e ON ce.emprendimiento_id = e.id
+        LEFT JOIN ClienteTipologia ct ON c.id = ct.cliente_id
+        LEFT JOIN tipologias t ON ct.tipologia_id = t.id
+        GROUP BY c.id
+      `);
+      
+      return rows.map(row => ({
+        ...row,
+        emprendimientos: row.emprendimientos ? row.emprendimientos.split(',').map(Number) : [],
+        tipologias: row.tipologias ? row.tipologias.split(',').map(Number) : []
+      }));
+    } catch (error) {
+      console.error('Error en getAllClientes:', error);
+      throw new Error('Error al obtener los clientes');
+    }
   }
 
   async createCliente(clienteData) {
@@ -140,3 +145,4 @@ class ClienteService {
 }
 
 module.exports = new ClienteService();
+
