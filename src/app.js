@@ -13,10 +13,18 @@ const { setupApplication } = require('./server-setup');
 
 const app = express();
 
+const allowedOrigins = ['https://adndash.vercel.app', 'http://localhost:3000'];
+
 // Configuración de CORS mejorada
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://adndash.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
   optionsSuccessStatus: 204
@@ -26,8 +34,19 @@ app.use(cors({
 app.use((req, res, next) => {
   res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
   res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
-  res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'https://adndash.vercel.app');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
+  
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    return res.status(204).end();
+  }
+
   next();
 });
 
