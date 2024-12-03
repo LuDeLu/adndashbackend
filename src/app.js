@@ -32,8 +32,8 @@ app.use(cors({
 
 // Configuración de encabezados de seguridad
 app.use((req, res, next) => {
-  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
-  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+  res.setHeader('Cross-Origin-Opener-Policy', 'unsafe-none');
+  res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   
   const origin = req.headers.origin;
