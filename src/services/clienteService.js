@@ -124,7 +124,7 @@ class ClienteService {
   async updateContactDates(id, { ultimo_contacto, proximo_contacto }) {
     const pool = getPool();
     await pool.query(
-      'UPDATE Clientes SET ultimo_contacto = ?, proximo_contacto = ? WHERE id = ?',
+      'UPDATE clientes SET ultimo_contacto = ?, proximo_contacto = ? WHERE id = ?',
       [ultimo_contacto, proximo_contacto, id]
     );
   }
