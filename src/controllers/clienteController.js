@@ -10,18 +10,18 @@ const createCliente = asyncHandler(async (req, res) => {
   const clienteId = await clienteService.createCliente(req.body);
   res.status(201).json({ 
     id: clienteId, 
-    message: 'Cliente created successfully' 
+    message: 'cliente created successfully' 
   });
 });
 
 const updateCliente = asyncHandler(async (req, res) => {
   await clienteService.updateCliente(req.params.id, req.body);
-  res.json({ message: 'Cliente updated successfully' });
+  res.json({ message: 'cliente updated successfully' });
 });
 
 const deleteCliente = asyncHandler(async (req, res) => {
   await clienteService.deleteCliente(req.params.id);
-  res.json({ message: 'Cliente deleted successfully' });
+  res.json({ message: 'cliente deleted successfully' });
 });
 
 const updateContactDates = asyncHandler(async (req, res) => {
