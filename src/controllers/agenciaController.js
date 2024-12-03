@@ -1,23 +1,28 @@
-const agenciaService = require('../services/agenciaService');
-const asyncHandler = require('../utils/asyncHandler');
+const { getPool } = require('../config/database');
 
-const getAllAgenciasInmobiliarias = asyncHandler(async (req, res) => {
-  const agencias = await agenciaService.getAllAgenciasInmobiliarias();
-  res.json(agencias);
-});
+const agenciaController = {
+  getAllInmobiliarias: async (req, res) => {
+    try {
+      const pool = getPool();
+      const [rows] = await pool.query('SELECT * FROM agenciasinmobiliarias');
+      res.json(rows);
+    } catch (error) {
+      console.error('Error al obtener inmobiliarias:', error);
+      res.status(500).json({ message: 'Error al obtener inmobiliarias' });
+    }
+  },
 
-const getAllEmprendimientos = asyncHandler(async (req, res) => {
-  const emprendimientos = await agenciaService.getAllEmprendimientos();
-  res.json(emprendimientos);
-});
-
-const getAllTipologias = asyncHandler(async (req, res) => {
-  const tipologias = await agenciaService.getAllTipologias();
-  res.json(tipologias);
-});
-
-module.exports = {
-  getAllAgenciasInmobiliarias,
-  getAllEmprendimientos,
-  getAllTipologias
+  getAllEmprendimientos: async (req, res) => {
+    try {
+      const pool = getPool();
+      const [rows] = await pool.query('SELECT * FROM emprendimientos');
+      res.json(rows);
+    } catch (error) {
+      console.error('Error al obtener emprendimientos:', error);
+      res.status(500).json({ message: 'Error al obtener emprendimientos' });
+    }
+  }
 };
+
+module.exports = agenciaController;
+
