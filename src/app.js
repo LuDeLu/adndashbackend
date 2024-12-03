@@ -67,17 +67,21 @@ app.use('/api/projects', projectRoutes);
 
 // Middleware de manejo de errores mejorado
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  console.error('Error en el servidor:', err);
   res.status(err.status || 500).json({
     message: err.message || 'Ha ocurrido un error en el servidor',
-    error: process.env.NODE_ENV === 'production' ? {} : err
+    error: process.env.NODE_ENV === 'production' ? {} : err.stack
   });
 });
 
 // Inicializar el pool de la base de datos
-initializePool().catch(console.error);
+initializePool().catch(error => {
+  console.error('Error al inicializar el pool de la base de datos:', error);
+  process.exit(1);
+});
 
 console.log('Middleware y rutas configurados');
 
 module.exports = app;
+
 

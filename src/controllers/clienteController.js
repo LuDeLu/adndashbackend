@@ -2,8 +2,15 @@ const clienteService = require('../services/clienteService');
 const asyncHandler = require('../utils/asyncHandler');
 
 const getAllClientes = asyncHandler(async (req, res) => {
-  const clientes = await clienteService.getAllClientes();
-  res.json(clientes);
+  try {
+    console.log('Iniciando obtención de clientes');
+    const clientes = await clienteService.getAllClientes();
+    console.log('Clientes obtenidos exitosamente');
+    res.json(clientes);
+  } catch (error) {
+    console.error('Error en getAllClientes controller:', error);
+    res.status(500).json({ message: 'Error al obtener los clientes', error: error.message });
+  }
 });
 
 const createCliente = asyncHandler(async (req, res) => {

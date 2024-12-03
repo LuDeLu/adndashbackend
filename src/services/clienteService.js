@@ -16,6 +16,8 @@ class ClienteService {
         GROUP BY c.id
       `);
       
+      console.log('Consulta SQL completada, número de clientes obtenidos:', rows.length);
+      
       return rows.map(row => ({
         ...row,
         emprendimientos: row.emprendimientos ? row.emprendimientos.split(',').map(Number) : [],
@@ -23,7 +25,7 @@ class ClienteService {
       }));
     } catch (error) {
       console.error('Error en getAllClientes:', error);
-      throw new Error('Error al obtener los clientes');
+      throw new Error('Error al obtener los clientes: ' + error.message);
     }
   }
 
