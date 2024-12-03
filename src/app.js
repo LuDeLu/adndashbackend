@@ -13,13 +13,24 @@ const { setupApplication } = require('./server-setup');
 
 const app = express();
 
-// Middleware
+// Configuración de CORS mejorada
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'https://adndash.vercel.app',
-  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  credentials: true,
+  optionsSuccessStatus: 204
 }));
+
+// Configuración de encabezados de seguridad
+app.use((req, res, next) => {
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+  res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'https://adndash.vercel.app');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
+
 app.use(express.json({ limit: '4gb' }));
 app.use(express.urlencoded({ extended: true, limit: '4gb' }));
 
@@ -35,8 +46,14 @@ app.use('/api/users', userRoutes);
 app.use('/api/agencias', agenciaRoutes);
 app.use('/api/projects', projectRoutes);
 
-// Middleware de manejo de errores debe ser el último
-app.use(errorHandler);
+// Middleware de manejo de errores mejorado
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).json({
+    message: err.message || 'Ha ocurrido un error en el servidor',
+    error: process.env.NODE_ENV === 'production' ? {} : err
+  });
+});
 
 // Inicializar el pool de la base de datos
 initializePool().catch(console.error);
