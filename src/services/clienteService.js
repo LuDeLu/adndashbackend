@@ -9,9 +9,9 @@ class ClienteService {
           GROUP_CONCAT(DISTINCT e.id) AS emprendimientos,
           GROUP_CONCAT(DISTINCT t.id) AS tipologias
         FROM clientes c
-        LEFT JOIN ClienteEmprendimiento ce ON c.id = ce.cliente_id
+        LEFT JOIN clienteemprendimiento ce ON c.id = ce.cliente_id
         LEFT JOIN emprendimientos e ON ce.emprendimiento_id = e.id
-        LEFT JOIN ClienteTipologia ct ON c.id = ct.cliente_id
+        LEFT JOIN clientetipologia ct ON c.id = ct.cliente_id
         LEFT JOIN tipologias t ON ct.tipologia_id = t.id
         GROUP BY c.id
       `);
@@ -41,7 +41,7 @@ class ClienteService {
       
       // Insert only the basic cliente data
       const [result] = await connection.query(
-        `INSERT INTO Clientes SET ?`,
+        `INSERT INTO clientes SET ?`,
         [clienteBasicData]
       );
       
@@ -77,12 +77,12 @@ class ClienteService {
       const { emprendimientos, tipologias, ...clienteBasicData } = clienteData;
       
       await connection.query(
-        `UPDATE Clientes SET ? WHERE id = ?`,
+        `UPDATE clientes SET ? WHERE id = ?`,
         [clienteBasicData, id]
       );
       
-      await connection.query('DELETE FROM ClienteEmprendimiento WHERE cliente_id = ?', [id]);
-      await connection.query('DELETE FROM ClienteTipologia WHERE cliente_id = ?', [id]);
+      await connection.query('DELETE FROM clienteemprendimiento WHERE cliente_id = ?', [id]);
+      await connection.query('DELETE FROM clientetipologia WHERE cliente_id = ?', [id]);
       
       if (emprendimientos?.length) {
         await this.insertEmprendimientos(connection, id, emprendimientos);
@@ -108,9 +108,9 @@ class ClienteService {
     try {
       await connection.beginTransaction();
       
-      await connection.query('DELETE FROM ClienteEmprendimiento WHERE cliente_id = ?', [id]);
-      await connection.query('DELETE FROM ClienteTipologia WHERE cliente_id = ?', [id]);
-      await connection.query('DELETE FROM Clientes WHERE id = ?', [id]);
+      await connection.query('DELETE FROM clienteemprendimiento WHERE cliente_id = ?', [id]);
+      await connection.query('DELETE FROM clientetipologia WHERE cliente_id = ?', [id]);
+      await connection.query('DELETE FROM clientes WHERE id = ?', [id]);
       
       await connection.commit();
     } catch (error) {
@@ -132,7 +132,7 @@ class ClienteService {
   async insertEmprendimientos(connection, clienteId, emprendimientos) {
     const values = emprendimientos.map(empId => [clienteId, empId]);
     await connection.query(
-      'INSERT INTO ClienteEmprendimiento (cliente_id, emprendimiento_id) VALUES ?',
+      'INSERT INTO clienteemprendimiento (cliente_id, emprendimiento_id) VALUES ?',
       [values]
     );
   }
@@ -140,7 +140,7 @@ class ClienteService {
   async insertTipologias(connection, clienteId, tipologias) {
     const values = tipologias.map(tipId => [clienteId, tipId]);
     await connection.query(
-      'INSERT INTO ClienteTipologia (cliente_id, tipologia_id) VALUES ?',
+      'INSERT INTO clientetipologia (cliente_id, tipologia_id) VALUES ?',
       [values]
     );
   }
