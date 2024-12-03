@@ -1,6 +1,12 @@
+const googleCalendarService = require('../services/googleCalendarService');
+const asyncHandler = require('express-async-handler');
 const eventService = require('../services/eventService');
-const asyncHandler = require('../utils/asyncHandler');
 
+
+const syncWithGoogleCalendar = asyncHandler(async (req, res) => {
+  await eventService.syncWithGoogleCalendar(req.user.userId);
+  res.json({ message: 'Events synced with Google Calendar successfully' });
+});
 const getAllEvents = asyncHandler(async (req, res) => {
   const events = await eventService.getAllEvents(req.user.userId);
   res.json(events);
