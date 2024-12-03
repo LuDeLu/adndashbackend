@@ -10,10 +10,10 @@ class EventService {
 
   async createEvent(userId, eventData) {
     const pool = await getPool();
-    const { title, client, start, end, googleEventId } = eventData;
+    const { title, client, start, end } = eventData;
     
     // Create event in Google Calendar
-    const googleEvent = await googleCalendarService.addEvent({
+    const googleEvent = await googleCalendarService.addEvent(userId, {
       summary: title,
       description: `Client: ${client}`,
       start: { dateTime: start },
@@ -33,7 +33,7 @@ class EventService {
     
     // Update event in Google Calendar
     if (googleEventId) {
-      await googleCalendarService.updateEvent(googleEventId, {
+      await googleCalendarService.updateEvent(userId, googleEventId, {
         summary: title,
         description: `Client: ${client}`,
         start: { dateTime: start },
@@ -55,7 +55,7 @@ class EventService {
     
     if (event && event[0].google_event_id) {
       // Delete event from Google Calendar
-      await googleCalendarService.deleteEvent(event[0].google_event_id);
+      await googleCalendarService.deleteEvent(userId, event[0].google_event_id);
     }
 
     await pool.query('DELETE FROM events WHERE id = ? AND user_id = ?', [eventId, userId]);
@@ -63,7 +63,7 @@ class EventService {
 
   async syncWithGoogleCalendar(userId) {
     const pool = await getPool();
-    const googleEvents = await googleCalendarService.listEvents();
+    const googleEvents = await googleCalendarService.listEvents(userId);
     
     for (const event of googleEvents) {
       const [existingEvent] = await pool.query('SELECT * FROM events WHERE google_event_id = ?', [event.id]);
