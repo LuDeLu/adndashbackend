@@ -2,8 +2,13 @@ const asyncHandler = require('express-async-handler');
 const eventService = require('../services/eventService');
 
 const syncWithGoogleCalendar = asyncHandler(async (req, res) => {
-  await eventService.syncWithGoogleCalendar(req.user.userId);
-  res.json({ message: 'Events synced with Google Calendar successfully' });
+  try {
+    await eventService.syncWithGoogleCalendar(req.user.userId);
+    res.json({ message: 'Events synced with Google Calendar successfully' });
+  } catch (error) {
+    console.error('Error syncing with Google Calendar:', error);
+    res.status(500).json({ message: 'Failed to sync with Google Calendar', error: error.message });
+  }
 });
 
 const getAllEvents = asyncHandler(async (req, res) => {
@@ -12,11 +17,8 @@ const getAllEvents = asyncHandler(async (req, res) => {
 });
 
 const createEvent = asyncHandler(async (req, res) => {
-  const eventId = await eventService.createEvent(req.user.userId, req.body);
-  res.status(201).json({ 
-    id: eventId, 
-    message: 'Event created successfully' 
-  });
+  const newEvent = await eventService.createEvent(req.user.userId, req.body);
+  res.status(201).json(newEvent);
 });
 
 const updateEvent = asyncHandler(async (req, res) => {

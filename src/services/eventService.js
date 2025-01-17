@@ -16,15 +16,17 @@ class EventService {
     const googleEvent = await googleCalendarService.addEvent(userId, {
       summary: title,
       description: `Client: ${client}`,
-      start: { dateTime: start },
-      end: { dateTime: end },
+      start: { dateTime: new Date(start).toISOString() },
+      end: { dateTime: new Date(end).toISOString() },
     });
 
     const [result] = await pool.query(
       'INSERT INTO events (user_id, title, client, start, end, google_event_id) VALUES (?, ?, ?, ?, ?, ?)',
       [userId, title, client, new Date(start), new Date(end), googleEvent.id]
     );
-    return result.insertId;
+    
+    const [newEvent] = await pool.query('SELECT * FROM events WHERE id = ?', [result.insertId]);
+    return newEvent[0];
   }
 
   async updateEvent(userId, eventId, eventData) {
@@ -63,20 +65,25 @@ class EventService {
 
   async syncWithGoogleCalendar(userId) {
     const pool = await getPool();
-    const googleEvents = await googleCalendarService.listEvents(userId);
-    
-    for (const event of googleEvents) {
-      const [existingEvent] = await pool.query('SELECT * FROM events WHERE google_event_id = ?', [event.id]);
+    try {
+      const googleEvents = await googleCalendarService.listEvents(userId);
       
-      if (existingEvent.length === 0) {
-        await this.createEvent(userId, {
-          title: event.summary,
-          client: event.description ? event.description.replace('Client: ', '') : '',
-          start: event.start.dateTime || event.start.date,
-          end: event.end.dateTime || event.end.date,
-          googleEventId: event.id,
-        });
+      for (const event of googleEvents) {
+        const [existingEvent] = await pool.query('SELECT * FROM events WHERE google_event_id = ?', [event.id]);
+        
+        if (existingEvent.length === 0) {
+          await this.createEvent(userId, {
+            title: event.summary,
+            client: event.description ? event.description.replace('Client: ', '') : '',
+            start: event.start.dateTime || event.start.date,
+            end: event.end.dateTime || event.end.date,
+            googleEventId: event.id,
+          });
+        }
       }
+    } catch (error) {
+      console.error('Error syncing with Google Calendar:', error);
+      throw error;
     }
   }
 }
