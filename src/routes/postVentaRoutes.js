@@ -10,15 +10,17 @@ router.get("/:id", authenticateToken, postVentaController.getReclamoById)
 router.put("/:id", authenticateToken, postVentaController.updateReclamo)
 router.delete("/:id", authenticateToken, postVentaController.deleteReclamo)
 
+// Rutas para detalles
+router.post("/:id/detalles", authenticateToken, postVentaController.agregarDetalleReclamo)
+router.delete("/:id/detalles/:index", authenticateToken, postVentaController.eliminarDetalleReclamo)
+
 // Rutas adicionales
 router.get("/search/term", authenticateToken, postVentaController.searchReclamos)
 router.get("/stats/overview", authenticateToken, postVentaController.getReclamosStats)
 router.post("/enviar-correo", authenticateToken, postVentaController.enviarCorreo)
 
-// Añadir esta nueva ruta
+// Ruta para actualizar fecha y hora de visita
 router.put("/:id/fecha-hora-visita", authenticateToken, postVentaController.actualizarFechaHoraVisita)
-
-// Las demás rutas permanecen sin cambios
 
 module.exports = router
 

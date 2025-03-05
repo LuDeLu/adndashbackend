@@ -4,8 +4,23 @@ const nodemailer = require("nodemailer")
 
 const postVentaController = {
   createReclamo: asyncHandler(async (req, res) => {
-    const nuevoReclamo = await postVentaService.createReclamo(req.body)
-    res.status(201).json(nuevoReclamo)
+    try {
+      // Asegurarse de que detalles sea un array
+      if (!req.body.detalles) {
+        req.body.detalles = []
+      }
+
+      console.log("Datos recibidos:", req.body)
+
+      const nuevoReclamo = await postVentaService.createReclamo(req.body)
+      res.status(201).json(nuevoReclamo)
+    } catch (error) {
+      console.error("Error en createReclamo:", error)
+      res.status(500).json({
+        message: "Error al crear el reclamo",
+        error: error.message,
+      })
+    }
   }),
 
   getAllReclamos: asyncHandler(async (req, res) => {
@@ -23,6 +38,11 @@ const postVentaController = {
   }),
 
   updateReclamo: asyncHandler(async (req, res) => {
+    // Asegurarse de que detalles sea un array
+    if (!req.body.detalles) {
+      req.body.detalles = []
+    }
+
     const updatedReclamo = await postVentaService.updateReclamo(req.params.id, req.body)
     if (updatedReclamo) {
       res.json(updatedReclamo)
@@ -62,6 +82,11 @@ const postVentaController = {
       return res.status(400).json({ message: "Faltan datos requeridos" })
     }
 
+    // Asegurarse de que detalles sea un array
+    if (!reclamo.detalles) {
+      reclamo.detalles = []
+    }
+
     // Configuración del transporte de correo (esto debería estar en un archivo de configuración)
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST || "smtp.example.com",
@@ -81,30 +106,40 @@ const postVentaController = {
       if (tipo === "nuevo_reclamo") {
         emailSubject = `Confirmación de Reclamo - Ticket ${reclamo.ticket}`
         emailContent = `
-          <h2>Confirmación de Reclamo</h2>
-          <p>Estimado/a ${reclamo.cliente},</p>
-          <p>Hemos recibido su reclamo con el ticket número <strong>${reclamo.ticket}</strong>.</p>
-          <p><strong>Detalle del reclamo:</strong> ${reclamo.detalle}</p>
-          <p><strong>Edificio:</strong> ${reclamo.edificio} - UF ${reclamo.unidadFuncional}</p>
-          ${reclamo.fechaVisita ? `<p><strong>Fecha programada para visita:</strong> ${reclamo.fechaVisita}</p>` : ""}
-          <p>Nos pondremos en contacto con usted a la brevedad para coordinar la inspección.</p>
-          <p>Saludos cordiales,</p>
-          <p>Equipo de Post Venta<br>ADN Developers</p>
-        `
+        <h2>Confirmación de Reclamo</h2>
+        <p>Estimado/a ${reclamo.cliente},</p>
+        <p>Hemos recibido su reclamo con el ticket número <strong>${reclamo.ticket}</strong>.</p>
+        <p><strong>Detalle del reclamo:</strong> ${reclamo.detalle}</p>
+        ${
+          reclamo.detalles && Array.isArray(reclamo.detalles) && reclamo.detalles.length > 0
+            ? `<p><strong>Detalles adicionales:</strong><ul>${reclamo.detalles.map((d) => `<li>${d}</li>`).join("")}</ul></p>`
+            : ""
+        }
+        <p><strong>Edificio:</strong> ${reclamo.edificio} - UF ${reclamo.unidadFuncional}</p>
+        ${reclamo.fechaVisita ? `<p><strong>Fecha programada para visita:</strong> ${reclamo.fechaVisita}</p>` : ""}
+        <p>Nos pondremos en contacto con usted a la brevedad para coordinar la inspección.</p>
+        <p>Saludos cordiales,</p>
+        <p>Equipo de Post Venta<br>ADN Developers</p>
+      `
       } else if (tipo === "actualizacion_estado") {
         emailSubject = `Actualización de Reclamo - Ticket ${reclamo.ticket}`
         emailContent = `
-          <h2>Actualización de Estado de Reclamo</h2>
-          <p>Estimado/a ${reclamo.cliente},</p>
-          <p>Le informamos que su reclamo con ticket número <strong>${reclamo.ticket}</strong> ha sido actualizado.</p>
-          <p><strong>Estado actual:</strong> ${reclamo.estado}</p>
-          <p><strong>Detalle del reclamo:</strong> ${reclamo.detalle}</p>
-          <p><strong>Edificio:</strong> ${reclamo.edificio} - UF ${reclamo.unidadFuncional}</p>
-          ${reclamo.fechaVisita ? `<p><strong>Fecha programada para visita:</strong> ${reclamo.fechaVisita}</p>` : ""}
-          <p>Si tiene alguna consulta, no dude en contactarnos.</p>
-          <p>Saludos cordiales,</p>
-          <p>Equipo de Post Venta<br>ADN Developers</p>
-        `
+        <h2>Actualización de Estado de Reclamo</h2>
+        <p>Estimado/a ${reclamo.cliente},</p>
+        <p>Le informamos que su reclamo con ticket número <strong>${reclamo.ticket}</strong> ha sido actualizado.</p>
+        <p><strong>Estado actual:</strong> ${reclamo.estado}</p>
+        <p><strong>Detalle del reclamo:</strong> ${reclamo.detalle}</p>
+        ${
+          reclamo.detalles && Array.isArray(reclamo.detalles) && reclamo.detalles.length > 0
+            ? `<p><strong>Detalles adicionales:</strong><ul>${reclamo.detalles.map((d) => `<li>${d}</li>`).join("")}</ul></p>`
+            : ""
+        }
+        <p><strong>Edificio:</strong> ${reclamo.edificio} - UF ${reclamo.unidadFuncional}</p>
+        ${reclamo.fechaVisita ? `<p><strong>Fecha programada para visita:</strong> ${reclamo.fechaVisita}</p>` : ""}
+        <p>Si tiene alguna consulta, no dude en contactarnos.</p>
+        <p>Saludos cordiales,</p>
+        <p>Equipo de Post Venta<br>ADN Developers</p>
+      `
       }
     }
 
@@ -143,6 +178,35 @@ const postVentaController = {
       res.json(updatedReclamo)
     } else {
       res.status(404).json({ message: "Reclamo no encontrado" })
+    }
+  }),
+
+  // Nuevo método para agregar detalles a un reclamo
+  agregarDetalleReclamo: asyncHandler(async (req, res) => {
+    const { id } = req.params
+    const { detalle } = req.body
+
+    if (!detalle) {
+      return res.status(400).json({ message: "Se requiere un detalle para agregar" })
+    }
+
+    const updatedReclamo = await postVentaService.agregarDetalleReclamo(id, detalle)
+    if (updatedReclamo) {
+      res.json(updatedReclamo)
+    } else {
+      res.status(404).json({ message: "Reclamo no encontrado" })
+    }
+  }),
+
+  // Nuevo método para eliminar un detalle de un reclamo
+  eliminarDetalleReclamo: asyncHandler(async (req, res) => {
+    const { id, index } = req.params
+
+    const updatedReclamo = await postVentaService.eliminarDetalleReclamo(id, Number.parseInt(index, 10))
+    if (updatedReclamo) {
+      res.json(updatedReclamo)
+    } else {
+      res.status(404).json({ message: "Reclamo no encontrado o índice inválido" })
     }
   }),
 }
