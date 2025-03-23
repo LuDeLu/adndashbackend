@@ -1,6 +1,7 @@
 const postVentaService = require("../services/postVentaService")
 const asyncHandler = require("../utils/asyncHandler")
 const nodemailer = require("nodemailer")
+const notificationTriggers = require("../triggers/notificationTriggers")
 
 const postVentaController = {
   createReclamo: asyncHandler(async (req, res) => {
@@ -13,6 +14,10 @@ const postVentaController = {
       console.log("Datos recibidos:", req.body)
 
       const nuevoReclamo = await postVentaService.createReclamo(req.body)
+
+      // Añadir notificación
+      await notificationTriggers.onReclamoCreated(nuevoReclamo)
+
       res.status(201).json(nuevoReclamo)
     } catch (error) {
       console.error("Error en createReclamo:", error)
@@ -208,6 +213,25 @@ const postVentaController = {
     } else {
       res.status(404).json({ message: "Reclamo no encontrado o índice inválido" })
     }
+  }),
+
+  updateEstadoReclamo: asyncHandler(async (req, res) => {
+    const { id } = req.params
+    const { estado } = req.body
+
+    // Obtener el estado anterior
+    const reclamoAnterior = await postVentaService.getReclamoById(id)
+    const estadoAnterior = reclamoAnterior.estado
+
+    // Actualizar el estado
+    const reclamoActualizado = await postVentaService.updateEstadoReclamo(id, estado)
+
+    // Añadir notificación si el estado cambió
+    if (estadoAnterior !== estado) {
+      await notificationTriggers.onReclamoStatusChanged(reclamoActualizado, estadoAnterior, estado)
+    }
+
+    res.json(reclamoActualizado)
   }),
 }
 

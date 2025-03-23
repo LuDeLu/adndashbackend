@@ -10,7 +10,8 @@ const agenciaRoutes = require("./routes/agenciaRoutes")
 const projectRoutes = require("./routes/projectRoutes")
 const errorHandler = require("./middleware/errorHandler")
 const { setupApplication } = require("./server-setup")
-const postVentaRoutes = require('./routes/postVentaRoutes');
+const postVentaRoutes = require("./routes/postVentaRoutes")
+const notificationRoutes = require("./routes/notificationRoutes") // Añadimos las rutas de notificaciones
 
 const app = express()
 
@@ -67,7 +68,8 @@ app.use("/api/events", eventRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/agencias", agenciaRoutes)
 app.use("/api/projects", projectRoutes)
-app.use('/api/postventa', postVentaRoutes);
+app.use("/api/postventa", postVentaRoutes)
+app.use("/api/notifications", notificationRoutes) // Añadimos las rutas de notificaciones
 
 // Middleware de manejo de errores mejorado
 app.use((err, req, res, next) => {
@@ -87,3 +89,4 @@ initializePool().catch((error) => {
 console.log("Middleware y rutas configurados")
 
 module.exports = app
+
