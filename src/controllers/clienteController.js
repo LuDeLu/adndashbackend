@@ -15,12 +15,20 @@ const getAllClientes = asyncHandler(async (req, res) => {
 })
 
 const createCliente = asyncHandler(async (req, res) => {
-  const nuevoCliente = await clienteService.createCliente(req.body)
+  try {
+    console.log("Creando nuevo cliente:", req.body.nombre, req.body.apellido)
+    const nuevoCliente = await clienteService.createCliente(req.body)
 
-  // Añadir notificación
-  await notificationTriggers.onClienteCreated(nuevoCliente)
+    // Generar notificación
+    console.log("Generando notificación para nuevo cliente")
+    await notificationTriggers.onClienteCreated(nuevoCliente)
+    console.log("Notificación generada exitosamente")
 
-  res.status(201).json(nuevoCliente)
+    res.status(201).json(nuevoCliente)
+  } catch (error) {
+    console.error("Error al crear cliente:", error)
+    res.status(500).json({ message: "Error al crear cliente", error: error.message })
+  }
 })
 
 const updateCliente = asyncHandler(async (req, res) => {

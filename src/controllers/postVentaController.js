@@ -3,68 +3,67 @@ const asyncHandler = require("../utils/asyncHandler")
 const nodemailer = require("nodemailer")
 const notificationTriggers = require("../triggers/notificationTriggers")
 
+const getAllReclamos = asyncHandler(async (req, res) => {
+  const reclamos = await postVentaService.getAllReclamos()
+  res.json(reclamos)
+})
+
+const createReclamo = asyncHandler(async (req, res) => {
+  try {
+    console.log("Creando nuevo reclamo:", req.body.ticket, req.body.cliente)
+    const nuevoReclamo = await postVentaService.createReclamo(req.body)
+
+    // Generar notificación
+    console.log("Generando notificación para nuevo reclamo")
+    await notificationTriggers.onReclamoCreated(nuevoReclamo)
+    console.log("Notificación generada exitosamente")
+
+    res.status(201).json(nuevoReclamo)
+  } catch (error) {
+    console.error("Error al crear reclamo:", error)
+    res.status(500).json({ message: "Error al crear reclamo", error: error.message })
+  }
+})
+
+const updateReclamo = asyncHandler(async (req, res) => {
+  try {
+    // Obtener el reclamo actual para comparar el estado
+    const reclamoActual = await postVentaService.getReclamoById(req.params.id)
+    const estadoAnterior = reclamoActual.estado
+    const estadoNuevo = req.body.estado
+
+    // Actualizar el reclamo
+    const reclamoActualizado = await postVentaService.updateReclamo(req.params.id, req.body)
+
+    // Si cambió el estado, generar notificación
+    if (estadoAnterior !== estadoNuevo) {
+      console.log(`Cambio de estado en reclamo ${reclamoActual.ticket}: ${estadoAnterior} -> ${estadoNuevo}`)
+      await notificationTriggers.onReclamoStatusChanged(reclamoActual, estadoAnterior, estadoNuevo)
+      console.log("Notificación de cambio de estado generada exitosamente")
+    }
+
+    res.json({ message: "Reclamo actualizado exitosamente", reclamo: reclamoActualizado })
+  } catch (error) {
+    console.error("Error al actualizar reclamo:", error)
+    res.status(500).json({ message: "Error al actualizar reclamo", error: error.message })
+  }
+})
+
+const deleteReclamo = asyncHandler(async (req, res) => {
+  await postVentaService.deleteReclamo(req.params.id)
+  res.json({ message: "Reclamo eliminado exitosamente" })
+})
+
+const getReclamoById = asyncHandler(async (req, res) => {
+  const reclamo = await postVentaService.getReclamoById(req.params.id)
+  if (!reclamo) {
+    res.status(404)
+    throw new Error("Reclamo no encontrado")
+  }
+  res.json(reclamo)
+})
+
 const postVentaController = {
-  createReclamo: asyncHandler(async (req, res) => {
-    try {
-      // Asegurarse de que detalles sea un array
-      if (!req.body.detalles) {
-        req.body.detalles = []
-      }
-
-      console.log("Datos recibidos:", req.body)
-
-      const nuevoReclamo = await postVentaService.createReclamo(req.body)
-
-      // Añadir notificación
-      await notificationTriggers.onReclamoCreated(nuevoReclamo)
-
-      res.status(201).json(nuevoReclamo)
-    } catch (error) {
-      console.error("Error en createReclamo:", error)
-      res.status(500).json({
-        message: "Error al crear el reclamo",
-        error: error.message,
-      })
-    }
-  }),
-
-  getAllReclamos: asyncHandler(async (req, res) => {
-    const reclamos = await postVentaService.getAllReclamos()
-    res.json(reclamos)
-  }),
-
-  getReclamoById: asyncHandler(async (req, res) => {
-    const reclamo = await postVentaService.getReclamoById(req.params.id)
-    if (reclamo) {
-      res.json(reclamo)
-    } else {
-      res.status(404).json({ message: "Reclamo no encontrado" })
-    }
-  }),
-
-  updateReclamo: asyncHandler(async (req, res) => {
-    // Asegurarse de que detalles sea un array
-    if (!req.body.detalles) {
-      req.body.detalles = []
-    }
-
-    const updatedReclamo = await postVentaService.updateReclamo(req.params.id, req.body)
-    if (updatedReclamo) {
-      res.json(updatedReclamo)
-    } else {
-      res.status(404).json({ message: "Reclamo no encontrado" })
-    }
-  }),
-
-  deleteReclamo: asyncHandler(async (req, res) => {
-    const deleted = await postVentaService.deleteReclamo(req.params.id)
-    if (deleted) {
-      res.json({ message: "Reclamo eliminado con éxito" })
-    } else {
-      res.status(404).json({ message: "Reclamo no encontrado" })
-    }
-  }),
-
   searchReclamos: asyncHandler(async (req, res) => {
     const { term } = req.query
     if (!term) {
@@ -235,5 +234,12 @@ const postVentaController = {
   }),
 }
 
-module.exports = postVentaController
+module.exports = {
+  getAllReclamos,
+  createReclamo,
+  updateReclamo,
+  deleteReclamo,
+  getReclamoById,
+  ...postVentaController,
+}
 

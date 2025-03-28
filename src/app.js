@@ -69,6 +69,7 @@ app.use("/api/users", userRoutes)
 app.use("/api/agencias", agenciaRoutes)
 app.use("/api/projects", projectRoutes)
 app.use("/api/postventa", postVentaRoutes)
+app.use("/api/notifications", require("./routes/notificationRoutes"))
 app.use("/api/notifications", notificationRoutes) // Añadimos las rutas de notificaciones
 
 // Middleware de manejo de errores mejorado

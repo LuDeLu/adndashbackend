@@ -67,12 +67,14 @@ class NotificationService {
   async createNotification(userId, message, type, module, link = null) {
     const pool = getPool()
     try {
+      console.log(`Creating notification for user ${userId}: ${message}`)
       const [result] = await pool.query(
         `INSERT INTO notifications 
          (user_id, message, type, module, link, \`read\`, created_at) 
          VALUES (?, ?, ?, ?, ?, 0, NOW())`,
         [userId, message, type, module, link],
       )
+      console.log(`Notification created with ID: ${result.insertId}`)
       return result.insertId
     } catch (error) {
       console.error("Error creating notification:", error)
@@ -84,7 +86,9 @@ class NotificationService {
   async createNotificationForRole(roleId, message, type, module, link = null) {
     const pool = getPool()
     try {
+      console.log(`Creating notifications for role ${roleId}: ${message}`)
       const [users] = await pool.query("SELECT id FROM users WHERE rol_id = ?", [roleId])
+      console.log(`Found ${users.length} users with role ${roleId}`)
 
       for (const user of users) {
         await this.createNotification(user.id, message, type, module, link)
