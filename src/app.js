@@ -11,7 +11,11 @@ const projectRoutes = require("./routes/projectRoutes")
 const errorHandler = require("./middleware/errorHandler")
 const { setupApplication } = require("./server-setup")
 const postVentaRoutes = require("./routes/postVentaRoutes")
-const notificationRoutes = require("./routes/notificationRoutes") // Añadimos las rutas de notificaciones
+const notificationRoutes = require("./routes/notificationRoutes")
+const checklistRoutes = require("./routes/checklistRoutes") // Añadimos las rutas de checklist
+const floorRoutes = require("./routes/floorRoutes")
+const apartmentRoutes = require("./routes/apartmentRoutes")
+const parkingRoutes = require("./routes/parkingRoutes")
 
 const app = express()
 
@@ -69,8 +73,18 @@ app.use("/api/users", userRoutes)
 app.use("/api/agencias", agenciaRoutes)
 app.use("/api/projects", projectRoutes)
 app.use("/api/postventa", postVentaRoutes)
-app.use("/api/notifications", require("./routes/notificationRoutes"))
-app.use("/api/notifications", notificationRoutes) // Añadimos las rutas de notificaciones
+app.use("/api/notifications", notificationRoutes)
+app.use("/api/checklist", checklistRoutes) // Añadimos las rutas de checklist
+app.use("/api/floors", floorRoutes)
+app.use("/api/apartments", apartmentRoutes)
+app.use("/api/parking", parkingRoutes)
+
+// Add a health check endpoint to the app.js file
+
+// Add this route near the other routes
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ status: "ok", message: "API is running" })
+})
 
 // Middleware de manejo de errores mejorado
 app.use((err, req, res, next) => {
@@ -90,4 +104,3 @@ initializePool().catch((error) => {
 console.log("Middleware y rutas configurados")
 
 module.exports = app
-

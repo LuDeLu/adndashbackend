@@ -84,6 +84,88 @@ const notificationTriggers = {
     )
   },
 
+  // Notificaciones para tickets de aprobación
+  async onTicketCreated(ticket) {
+    // Notificar a todos los departamentos involucrados
+    const departamentos = [ROLES.FINANZAS, ROLES.ADMIN, ROLES.ARQUITECTURA, ROLES.COMERCIAL]
+
+    for (const rolId of departamentos) {
+      await notificationService.createNotificationForRole(
+        rolId,
+        `Nuevo ticket de aprobación: ${ticket.ticket_id} - ${ticket.title}`,
+        "info",
+        "documentos",
+        "/checklist",
+      )
+    }
+  },
+
+  async onTicketApproved(ticket, department, approved, userId) {
+    // Notificar al creador del ticket
+    const message = approved
+      ? `${
+          department === "contaduria"
+            ? "Contaduría"
+            : department === "legales"
+              ? "Legales"
+              : department === "tesoreria"
+                ? "Tesorería"
+                : department === "gerenciaComercial"
+                  ? "Gerencia Comercial"
+                  : department === "gerencia"
+                    ? "Gerencia"
+                    : department === "arquitecto"
+                      ? "Arquitecto"
+                      : department
+        } ha aprobado el documento "${ticket.title}" (${ticket.ticket_id})`
+      : `${
+          department === "contaduria"
+            ? "Contaduría"
+            : department === "legales"
+              ? "Legales"
+              : department === "tesoreria"
+                ? "Tesorería"
+                : department === "gerenciaComercial"
+                  ? "Gerencia Comercial"
+                  : department === "gerencia"
+                    ? "Gerencia"
+                    : department === "arquitecto"
+                      ? "Arquitecto"
+                      : department
+        } ha rechazado el documento "${ticket.title}" (${ticket.ticket_id})`
+
+    await notificationService.createNotification(
+      ticket.creador_id,
+      message,
+      approved ? "success" : "warning",
+      "documentos",
+      "/checklist",
+    )
+
+    // Si el ticket está completamente aprobado o rechazado, notificar SOLO UNA VEZ
+    if (ticket.estado === "aprobado" || ticket.estado === "rechazado") {
+      // Enviar una única notificación al rol ADMIN en lugar de a todos los departamentos
+      await notificationService.createNotificationForRole(
+        ROLES.ADMIN,
+        `El documento "${ticket.title}" (${ticket.ticket_id}) ha sido ${ticket.estado === "aprobado" ? "aprobado por todos los departamentos" : "rechazado"}`,
+        ticket.estado === "aprobado" ? "success" : "warning",
+        "documentos",
+        "/checklist",
+      )
+
+      // Opcional: Enviar una notificación al creador si no es admin
+      if (ticket.creador_id) {
+        await notificationService.createNotification(
+          ticket.creador_id,
+          `El documento "${ticket.title}" (${ticket.ticket_id}) ha sido ${ticket.estado === "aprobado" ? "aprobado por todos los departamentos" : "rechazado"}`,
+          ticket.estado === "aprobado" ? "success" : "warning",
+          "documentos",
+          "/checklist",
+        )
+      }
+    }
+  },
+
   // Notificación general para todos los usuarios
   async notifyAllUsers(message, type = "info", module = "sistema", link = null) {
     const pool = require("../config/database").getPool()
@@ -96,4 +178,3 @@ const notificationTriggers = {
 }
 
 module.exports = notificationTriggers
-
