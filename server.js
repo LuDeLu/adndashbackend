@@ -1,32 +1,41 @@
-require('dotenv').config();
-const app = require('./src/app');
+require("dotenv").config()
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001
 
-const server = app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+async function startServer() {
+  try {
+    // Inicializar la aplicación (esto incluye la inicialización de la DB)
+    const initializeApp = require("./src/app") // Corregido: agregué ./src/
+    const app = await initializeApp()
 
-// Manejo de errores no capturados
-process.on('uncaughtException', (error) => {
-  console.error('Uncaught Exception:', error);
-  // Realizar tareas de limpieza si es necesario
-  process.exit(1);
-});
+    const server = app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`)
+      console.log(`📊 Health check: http://localhost:${PORT}/api/health`)
+    })
 
-process.on('unhandledRejection', (reason, promise) => {
-  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  // Realizar tareas de limpieza si es necesario
-});
+    // Manejo de errores no capturados
+    process.on("uncaughtException", (error) => {
+      console.error("Uncaught Exception:", error)
+      process.exit(1)
+    })
 
-// Manejo de cierre del servidor
-process.on('SIGTERM', () => {
-  console.info('SIGTERM signal received.');
-  console.log('Closing HTTP server.');
-  server.close(() => {
-    console.log('HTTP server closed.');
-    // Cerrar conexiones de base de datos u otros recursos
-    process.exit(0);
-  });
-});
+    process.on("unhandledRejection", (reason, promise) => {
+      console.error("Unhandled Rejection at:", promise, "reason:", reason)
+    })
 
+    // Manejo de cierre del servidor
+    process.on("SIGTERM", () => {
+      console.info("SIGTERM signal received.")
+      console.log("Closing HTTP server.")
+      server.close(() => {
+        console.log("HTTP server closed.")
+        process.exit(0)
+      })
+    })
+  } catch (error) {
+    console.error("❌ Failed to start server:", error)
+    process.exit(1)
+  }
+}
+
+startServer()

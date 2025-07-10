@@ -9,4 +9,7 @@ router.get("/floor/:floorId", authenticateToken, apartmentController.getApartmen
 // Update apartment status
 router.put("/:apartmentId", authenticateToken, apartmentController.updateApartmentStatus)
 
+// Assign parking spots to an apartment
+router.post("/:apartmentId/assign-parking", authenticateToken, apartmentController.assignParkingToApartment)
+
 module.exports = router

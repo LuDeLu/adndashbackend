@@ -1,7 +1,7 @@
 const apartmentService = require("../services/apartmentService")
 const asyncHandler = require("../utils/asyncHandler")
-const { getPool } = require("../config/database") // Import getPool from db.js
 
+const { getPool } = require("../config/database") // Import getPool from db.js
 
 const apartmentController = {
   getApartmentsByFloorId: asyncHandler(async (req, res) => {
@@ -49,7 +49,7 @@ const apartmentController = {
         userId: req.user.userId,
         userName: req.user.nombre,
         projectId: floor.project_id,
-        apartmentId: `${floor.floor_number}-${apartment.apartment_id}`,
+        apartmentId: `${floor.floor_number}-${apartment.apartment_id}`, // apartment.apartment_id is the identifier like "1A"
         description,
       })
 
@@ -62,12 +62,17 @@ const apartmentController = {
 
   getApartmentByIdentifier: asyncHandler(async (req, res) => {
     try {
-      const { floorNumber, apartmentId } = req.params
+      const { floorNumber, apartmentId } = req.params // apartmentId here is the identifier like "1A"
       const pool = getPool()
+      const projectId = req.query.projectId || req.body.projectId
+
+      if (!projectId) {
+        return res.status(400).json({ message: "projectId es requerido" })
+      }
 
       // First get the floor ID
       const [floorRows] = await pool.query("SELECT id FROM floors WHERE project_id = ? AND floor_number = ?", [
-        req.query.projectId || req.body.projectId,
+        projectId,
         floorNumber,
       ])
 
@@ -80,7 +85,7 @@ const apartmentController = {
       // Then get the apartment
       const [apartmentRows] = await pool.query("SELECT * FROM apartments WHERE floor_id = ? AND apartment_id = ?", [
         floorId,
-        apartmentId,
+        apartmentId, // apartment_id is the identifier like "1A"
       ])
 
       if (apartmentRows.length === 0) {
@@ -91,6 +96,39 @@ const apartmentController = {
     } catch (error) {
       console.error("Error in getApartmentByIdentifier controller:", error)
       res.status(500).json({ message: "Error al obtener el departamento", error: error.message })
+    }
+  }),
+
+  assignParkingToApartment: asyncHandler(async (req, res) => {
+    try {
+      const { apartmentId } = req.params
+      const { parking_spot_codes, projectId, description } = req.body
+      const userId = req.user?.userId
+      const userName = req.user?.nombre
+
+      if (!Array.isArray(parking_spot_codes)) {
+        return res.status(400).json({ message: "parking_spot_codes debe ser un array." })
+      }
+      if (!projectId) {
+        return res.status(400).json({ message: "projectId es requerido." })
+      }
+      if (!userId || !userName) {
+        return res.status(400).json({ message: "Información de usuario requerida." })
+      }
+
+      const result = await apartmentService.assignParkingToApartment(
+        Number.parseInt(apartmentId, 10),
+        parking_spot_codes,
+        userId,
+        userName,
+        Number.parseInt(projectId, 10),
+        description,
+      )
+
+      res.json(result)
+    } catch (error) {
+      console.error("Error in assignParkingToApartment controller:", error)
+      res.status(500).json({ message: "Error al asignar cocheras", error: error.message })
     }
   }),
 }
