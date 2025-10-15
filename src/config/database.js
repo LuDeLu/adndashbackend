@@ -1,7 +1,7 @@
 const mysql = require("mysql2/promise")
 
 const dbConfig = {
-  host: process.env.DB_HOST || "adndevelopers.com.ar",
+  host: process.env.DB_HOST || "35.212.84.160",
   user: process.env.DB_USER || "uqmlgkm2pgggc",
   password: process.env.DB_PASSWORD || "Calpol!59",
   database: process.env.DB_NAME || "dbov5rhwzzsxsr",

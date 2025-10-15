@@ -16,11 +16,12 @@ router.delete("/:id/detalles/:index", authenticateToken, postVentaController.eli
 
 // Rutas adicionales
 router.get("/search/term", authenticateToken, postVentaController.searchReclamos)
-router.get("/stats/overview", authenticateToken, postVentaController.getReclamosStats)
+router.get("/stats/overview", authenticateToken, postVentaController.getEstadisticas)
 router.post("/enviar-correo", authenticateToken, postVentaController.enviarCorreo)
 
 // Ruta para actualizar fecha y hora de visita
 router.put("/:id/fecha-hora-visita", authenticateToken, postVentaController.actualizarFechaHoraVisita)
 
-module.exports = router
+router.post("/:id/cerrar", authenticateToken, postVentaController.cerrarTicket)
 
+module.exports = router

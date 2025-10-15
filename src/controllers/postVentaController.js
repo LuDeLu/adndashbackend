@@ -74,8 +74,8 @@ const postVentaController = {
     res.json(reclamos)
   }),
 
-  getReclamosStats: asyncHandler(async (req, res) => {
-    const stats = await postVentaService.getReclamosStats()
+  getEstadisticas: asyncHandler(async (req, res) => {
+    const stats = await postVentaService.getEstadisticas()
     res.json(stats)
   }),
 
@@ -86,13 +86,11 @@ const postVentaController = {
       return res.status(400).json({ message: "Faltan datos requeridos" })
     }
 
-    // Asegurarse de que detalles sea un array
     if (!reclamo.detalles) {
       reclamo.detalles = []
     }
 
-    // Configuración del transporte de correo (esto debería estar en un archivo de configuración)
-    const transporter = nodemailer.createTransport({
+    const transporter = nodemailer.createTransporter({
       host: process.env.EMAIL_HOST || "smtp.example.com",
       port: process.env.EMAIL_PORT || 587,
       secure: process.env.EMAIL_SECURE === "true",
@@ -102,7 +100,6 @@ const postVentaController = {
       },
     })
 
-    // Preparar el contenido del correo según el tipo
     let emailSubject = asunto || ""
     let emailContent = mensaje || ""
 
@@ -144,24 +141,30 @@ const postVentaController = {
         <p>Saludos cordiales,</p>
         <p>Equipo de Post Venta<br>ADN Developers</p>
       `
+      } else if (tipo === "cierre_ticket") {
+        emailSubject = `Cierre de Reclamo - Ticket ${reclamo.ticket}`
+        emailContent = `
+        <h2>Cierre de Reclamo</h2>
+        <p>Estimado/a ${reclamo.cliente},</p>
+        <p>Damos por finalizado tu reclamo de la Unidad <strong>${reclamo.unidadFuncional}</strong> del Edificio <strong>${reclamo.edificio}</strong> creado el día <strong>${reclamo.fechaCreacion}</strong> en <strong>${reclamo.ubicacionAfectada || "la ubicación indicada"}</strong>.</p>
+        <p><strong>Ticket:</strong> ${reclamo.ticket}</p>
+        <p><strong>Detalle del reclamo:</strong> ${reclamo.detalle}</p>
+        <p>Te pedimos tu conformidad sobre la resolución. En caso de no obtener respuesta en las próximas 72hs daremos por confirmada la resolución del mismo.</p>
+        <p>Muchas gracias,</p>
+        <p><strong>Equipo de Postventa</strong><br>ADN Developers</p>
+      `
       }
     }
 
-    // Opciones del correo
     const mailOptions = {
       from: process.env.EMAIL_FROM || "postventa@adndevelopers.com.ar",
-      to: reclamo.email || "cliente@example.com", // Idealmente, el reclamo debería tener el email del cliente
+      to: reclamo.email || "cliente@example.com",
       subject: emailSubject,
       html: emailContent,
     }
 
     try {
-      // Enviar el correo (comentado para evitar envíos reales en desarrollo)
-      // await transporter.sendMail(mailOptions);
-
-      // En un entorno de producción, descomentar la línea anterior y comentar la siguiente
       console.log("Correo simulado enviado a:", mailOptions.to)
-
       res.json({ message: "Correo enviado con éxito" })
     } catch (error) {
       console.error("Error al enviar correo:", error)
@@ -185,7 +188,6 @@ const postVentaController = {
     }
   }),
 
-  // Nuevo método para agregar detalles a un reclamo
   agregarDetalleReclamo: asyncHandler(async (req, res) => {
     const { id } = req.params
     const { detalle } = req.body
@@ -202,7 +204,6 @@ const postVentaController = {
     }
   }),
 
-  // Nuevo método para eliminar un detalle de un reclamo
   eliminarDetalleReclamo: asyncHandler(async (req, res) => {
     const { id, index } = req.params
 
@@ -218,19 +219,48 @@ const postVentaController = {
     const { id } = req.params
     const { estado } = req.body
 
-    // Obtener el estado anterior
     const reclamoAnterior = await postVentaService.getReclamoById(id)
     const estadoAnterior = reclamoAnterior.estado
 
-    // Actualizar el estado
     const reclamoActualizado = await postVentaService.updateEstadoReclamo(id, estado)
 
-    // Añadir notificación si el estado cambió
     if (estadoAnterior !== estado) {
       await notificationTriggers.onReclamoStatusChanged(reclamoActualizado, estadoAnterior, estado)
     }
 
     res.json(reclamoActualizado)
+  }),
+
+  cerrarTicket: asyncHandler(async (req, res) => {
+    const { id } = req.params
+    const { proveedorResolvio, costo, fechaCierre } = req.body
+
+    if (!proveedorResolvio) {
+      return res.status(400).json({ message: "Se requiere el proveedor que resolvió el ticket" })
+    }
+
+    const ticketCerrado = await postVentaService.cerrarTicket(id, {
+      proveedorResolvio,
+      costo: costo || 0,
+      fechaCierre: fechaCierre || new Date().toISOString().split("T")[0],
+    })
+
+    // Enviar correo de cierre automáticamente
+    try {
+      await postVentaController.enviarCorreo(
+        {
+          body: {
+            reclamo: ticketCerrado,
+            tipo: "cierre_ticket",
+          },
+        },
+        res,
+      )
+    } catch (error) {
+      console.error("Error al enviar correo de cierre:", error)
+    }
+
+    res.json({ message: "Ticket cerrado exitosamente", reclamo: ticketCerrado })
   }),
 }
 
@@ -242,4 +272,3 @@ module.exports = {
   getReclamoById,
   ...postVentaController,
 }
-
