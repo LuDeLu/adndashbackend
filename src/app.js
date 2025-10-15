@@ -5,7 +5,7 @@ const { initializePool } = require("../src/config/database") // Esta ruta deber√
 
 const app = express()
 
-const allowedOrigins = ["https://adndash.vercel.app", "http://localhost:3000"]
+const allowedOrigins = ["https://adndash.vercel.app", "http://localhost:3000", "https://www.adncrm.com.ar/"]
 
 // Configuraci√≥n de CORS mejorada
 app.use(
