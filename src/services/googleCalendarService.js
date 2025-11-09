@@ -16,32 +16,29 @@ class GoogleCalendarService {
   async getAuthUrl(userId) {
     const scopes = ["https://www.googleapis.com/auth/calendar", "https://www.googleapis.com/auth/calendar.events"]
 
-    const authUrl = this.oauth2Client.generateAuthUrl({
+    return this.oauth2Client.generateAuthUrl({
       access_type: "offline",
       scope: scopes,
-      prompt: "consent", // Asegura que siempre se obtenga un refresh_token
-      state: userId.toString(), // Para identificar al usuario en el callback
+      prompt: "consent",
+      state: userId.toString(),
     })
-
-    return authUrl
   }
 
   // Intercambia el código de autorización por tokens de acceso y refresco
   async exchangeCodeForTokens(userId, code) {
     try {
       const { tokens } = await this.oauth2Client.getToken(code)
-
-      // Guardar tokens en la base de datos
       const pool = await getPool()
+
       await pool.query(
         "UPDATE users SET google_access_token = ?, google_refresh_token = ?, google_connected = TRUE WHERE id = ?",
         [tokens.access_token, tokens.refresh_token, userId],
       )
 
-      return true
+      return tokens
     } catch (error) {
       console.error("Error exchanging code for tokens:", error)
-      throw new Error(`Failed to exchange authorization code: ${error.message}`)
+      throw new Error("Failed to exchange authorization code")
     }
   }
 
@@ -50,149 +47,132 @@ class GoogleCalendarService {
     try {
       const pool = await getPool()
       const [rows] = await pool.query("SELECT google_connected FROM users WHERE id = ?", [userId])
-
-      if (rows.length === 0) {
-        console.log(`User not found with ID: ${userId}`);
-        return false;
-      }
-
       return rows.length > 0 && rows[0].google_connected === 1
     } catch (error) {
-      console.error("Error in isUserConnected:", error)
-      throw new Error("Error checking Google connection: " + error.message)
+      console.error("Error checking Google connection:", error)
+      return false
     }
   }
 
+  // Configura las credenciales para el usuario en Google Calendar
   async setCredentialsForUser(userId) {
     const pool = await getPool()
     const [rows] = await pool.query("SELECT google_access_token, google_refresh_token FROM users WHERE id = ?", [
       userId,
     ])
 
-    if (rows.length > 0 && rows[0].google_access_token && rows[0].google_refresh_token) {
-      const { google_access_token, google_refresh_token } = rows[0]
-      this.oauth2Client.setCredentials({
-        access_token: google_access_token,
-        refresh_token: google_refresh_token,
-      })
-
-      // Configurar el manejador de tokens actualizados
-      this.oauth2Client.on("tokens", async (tokens) => {
-        if (tokens.access_token) {
-          // Actualizar el token de acceso en la base de datos
-          const pool = await getPool()
-          await pool.query("UPDATE users SET google_access_token = ? WHERE id = ?", [tokens.access_token, userId])
-        }
-      })
-
-      return true
-    } else {
+    if (rows.length === 0 || !rows[0].google_access_token || !rows[0].google_refresh_token) {
       throw new Error("User not found or Google Calendar not connected")
     }
+
+    const { google_access_token, google_refresh_token } = rows[0]
+    this.oauth2Client.setCredentials({
+      access_token: google_access_token,
+      refresh_token: google_refresh_token,
+    })
+
+    // Actualiza automáticamente los tokens cuando se refrescan
+    this.oauth2Client.on("tokens", async (tokens) => {
+      if (tokens.access_token) {
+        await pool.query("UPDATE users SET google_access_token = ? WHERE id = ?", [tokens.access_token, userId])
+      }
+    })
+
+    return true
   }
 
+  // Lista los eventos del calendario del usuario
   async listEvents(userId, options = {}) {
     await this.setCredentialsForUser(userId)
 
-    const calendarId = options.calendarId || "primary"
-    const maxResults = options.maxResults || 100
-    const timeMin = options.timeMin || new Date().toISOString()
-    const timeMax = options.timeMax || undefined
+    const params = {
+      calendarId: options.calendarId || "primary",
+      timeMin: options.timeMin || new Date().toISOString(),
+      timeMax: options.timeMax,
+      maxResults: options.maxResults || 100,
+      singleEvents: true,
+      orderBy: "startTime",
+    }
 
     try {
-      const response = await this.calendar.events.list({
-        calendarId: calendarId,
-        timeMin: timeMin,
-        timeMax: timeMax,
-        maxResults: maxResults,
-        singleEvents: true,
-        orderBy: "startTime",
-      })
-      return response.data.items
+      const response = await this.calendar.events.list(params)
+      return response.data.items || []
     } catch (error) {
       console.error("Error listing events:", error)
-
-      // Manejo específico de errores de autenticación
-      if (error.response && error.response.status === 401) {
+      if (error.response?.status === 401) {
         await this.handleAuthError(userId, error)
       }
-
       throw error
     }
   }
 
+  // Añade un evento al calendario del usuario
   async addEvent(userId, event, calendarId = "primary") {
+    await this.setCredentialsForUser(userId)
+
     try {
-      await this.setCredentialsForUser(userId)
       const response = await this.calendar.events.insert({
-        calendarId: calendarId,
+        calendarId,
         resource: event,
       })
       return response.data
     } catch (error) {
       console.error("Error adding event:", error)
-
-      // Manejo específico de errores de autenticación
-      if (error.response && error.response.status === 401) {
+      if (error.response?.status === 401) {
         await this.handleAuthError(userId, error)
       }
-
-      throw new Error("Google Calendar API error: " + error.message)
+      throw new Error(`Google Calendar API error: ${error.message}`)
     }
   }
 
+  // Actualiza un evento en el calendario del usuario
   async updateEvent(userId, eventId, event, calendarId = "primary") {
     await this.setCredentialsForUser(userId)
+
     try {
       const response = await this.calendar.events.update({
-        calendarId: calendarId,
-        eventId: eventId,
+        calendarId,
+        eventId,
         resource: event,
       })
       return response.data
     } catch (error) {
       console.error("Error updating event:", error)
-
-      // Manejo específico de errores de autenticación
-      if (error.response && error.response.status === 401) {
+      if (error.response?.status === 401) {
         await this.handleAuthError(userId, error)
       }
-
       throw error
     }
   }
 
+  // Elimina un evento del calendario del usuario
   async deleteEvent(userId, eventId, calendarId = "primary") {
     await this.setCredentialsForUser(userId)
+
     try {
       await this.calendar.events.delete({
-        calendarId: calendarId,
-        eventId: eventId,
+        calendarId,
+        eventId,
       })
       return true
     } catch (error) {
-      console.error("Error deleting event:", error)
-
-      // Manejo específico de errores de autenticación
-      if (error.response && error.response.status === 401) {
-        await this.handleAuthError(userId, error)
-      }
-
-      // Si el evento no existe en Google Calendar, consideramos que ya está eliminado
-      if (error.response && error.response.status === 404) {
+      if (error.response?.status === 404) {
         return true
       }
 
+      console.error("Error deleting event:", error)
+      if (error.response?.status === 401) {
+        await this.handleAuthError(userId, error)
+      }
       throw error
     }
   }
 
   // Maneja errores de autenticación, marcando la conexión como inválida
   async handleAuthError(userId, error) {
-    if (error.response && error.response.status === 401) {
+    if (error.response?.status === 401) {
       const pool = await getPool()
       await pool.query("UPDATE users SET google_connected = FALSE WHERE id = ?", [userId])
-
       throw new Error("Google Calendar authentication expired. Please reconnect your account.")
     }
     throw error
@@ -201,17 +181,15 @@ class GoogleCalendarService {
   // Obtiene información sobre los calendarios disponibles del usuario
   async listCalendars(userId) {
     await this.setCredentialsForUser(userId)
+
     try {
       const response = await this.calendar.calendarList.list()
-      return response.data.items
+      return response.data.items || []
     } catch (error) {
       console.error("Error listing calendars:", error)
-
-      // Manejo específico de errores de autenticación
-      if (error.response && error.response.status === 401) {
+      if (error.response?.status === 401) {
         await this.handleAuthError(userId, error)
       }
-
       throw error
     }
   }

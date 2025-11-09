@@ -51,6 +51,12 @@ class NotificationScheduler {
       }),
     )
 
+    this.jobs.push(
+      cron.schedule("0 * * * *", () => {
+        this.checkClientContactReminders()
+      }),
+    )
+
     // Generar resumen semanal (cada lunes a las 8:00 AM)
     this.jobs.push(
       cron.schedule("0 8 * * 1", () => {
@@ -76,11 +82,9 @@ class NotificationScheduler {
 
     try {
       // Buscar eventos que ocurrirán en las próximas 24 horas y no se ha enviado recordatorio
-      const [events] = await pool.query(`
-        SELECT * FROM events 
-        WHERE start BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 24 HOUR)
-        AND reminded = 0
-      `)
+      const [events] = await pool.query(
+        `SELECT * FROM events WHERE start BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 24 HOUR) AND reminded = 0`,
+      )
 
       console.log(`Encontrados ${events.length} eventos próximos`)
 
@@ -109,11 +113,9 @@ class NotificationScheduler {
 
     try {
       // Buscar reclamos en estado "Ingresado" con más de 3 días
-      const [reclamos] = await pool.query(`
-        SELECT * FROM reclamos 
-        WHERE estado = 'Ingresado' 
-        AND fechaIngreso < DATE_SUB(CURDATE(), INTERVAL 3 DAY)
-      `)
+      const [reclamos] = await pool.query(
+        `SELECT * FROM reclamos WHERE estado = 'Ingresado' AND fechaIngreso < DATE_SUB(CURDATE(), INTERVAL 3 DAY)`,
+      )
 
       console.log(`Encontrados ${reclamos.length} reclamos pendientes sin atender`)
 
@@ -139,13 +141,9 @@ class NotificationScheduler {
 
     try {
       // Buscar tareas con fecha de finalización pasada y progreso < 100%
-      const [tasks] = await pool.query(`
-        SELECT t.*, p.name as project_name 
-        FROM construction_tasks t
-        JOIN construction_projects p ON t.project_id = p.id
-        WHERE t.end_date < CURDATE() 
-        AND t.progress < 100
-      `)
+      const [tasks] = await pool.query(
+        `SELECT t.*, p.name as project_name FROM construction_tasks t JOIN construction_projects p ON t.project_id = p.id WHERE t.end_date < CURDATE() AND t.progress < 100`,
+      )
 
       console.log(`Encontradas ${tasks.length} tareas retrasadas`)
 
@@ -161,6 +159,34 @@ class NotificationScheduler {
     }
   }
 
+  async checkClientContactReminders() {
+    console.log("Verificando recordatorios de contacto de clientes...")
+    const pool = getPool()
+
+    try {
+      // Get all clients that need contact today or are overdue
+      const [clientes] = await pool.query(
+        `SELECT * FROM clientes WHERE proximo_contacto IS NOT NULL AND DATE(proximo_contacto) <= DATE(NOW()) AND estado != 'Completo'`,
+      )
+
+      console.log(`Encontrados ${clientes.length} clientes que necesitan contacto`)
+
+      for (const cliente of clientes) {
+        // Check if we already sent a notification today for this client
+        const [existingNotification] = await pool.query(
+          `SELECT id FROM notifications WHERE module = 'clientes' AND message LIKE ? AND DATE(created_at) = DATE(NOW())`,
+          [`%${cliente.nombre} ${cliente.apellido}%`],
+        )
+
+        if (existingNotification.length === 0) {
+          await notificationTriggers.onClienteContactReminder(cliente)
+        }
+      }
+    } catch (error) {
+      console.error("Error al verificar recordatorios de contacto de clientes:", error)
+    }
+  }
+
   // Generar resumen semanal
   async generateWeeklySummary() {
     console.log("Generando resumen semanal...")
@@ -168,21 +194,17 @@ class NotificationScheduler {
 
     try {
       // Obtener estadísticas de la semana anterior
-      const [clientesNuevos] = await pool.query(`
-        SELECT COUNT(*) as count FROM clientes 
-        WHERE fecha_creacion > DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-      `)
+      const [clientesNuevos] = await pool.query(
+        `SELECT COUNT(*) as count FROM clientes WHERE fecha_creacion > DATE_SUB(CURDATE(), INTERVAL 7 DAY)`,
+      )
 
-      const [reclamosNuevos] = await pool.query(`
-        SELECT COUNT(*) as count FROM reclamos 
-        WHERE fechaIngreso > DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-      `)
+      const [reclamosNuevos] = await pool.query(
+        `SELECT COUNT(*) as count FROM reclamos WHERE fechaIngreso > DATE_SUB(CURDATE(), INTERVAL 7 DAY)`,
+      )
 
-      const [reclamosSolucionados] = await pool.query(`
-        SELECT COUNT(*) as count FROM reclamos 
-        WHERE estado = 'Solucionado' 
-        AND fechaIngreso > DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-      `)
+      const [reclamosSolucionados] = await pool.query(
+        `SELECT COUNT(*) as count FROM reclamos WHERE estado = 'Solucionado' AND fechaIngreso > DATE_SUB(CURDATE(), INTERVAL 7 DAY)`,
+      )
 
       // Crear mensaje de resumen
       const mensaje = `Resumen semanal: ${clientesNuevos[0].count} nuevos clientes, ${reclamosNuevos[0].count} nuevos reclamos, ${reclamosSolucionados[0].count} reclamos solucionados`
@@ -198,4 +220,3 @@ class NotificationScheduler {
 }
 
 module.exports = new NotificationScheduler()
-

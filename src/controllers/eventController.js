@@ -3,45 +3,47 @@ const eventService = require("../services/eventService")
 const notificationTriggers = require("../triggers/notificationTriggers")
 const googleCalendarService = require("../services/googleCalendarService")
 
-// Método para iniciar el flujo de autenticación con Google
 const initiateGoogleAuth = asyncHandler(async (req, res) => {
   try {
     const authUrl = await googleCalendarService.getAuthUrl(req.user.userId)
     res.json({ authUrl })
   } catch (error) {
     console.error("Error initiating Google auth:", error)
-    res.status(500).json({ message: "Failed to initiate Google authentication", error: error.message })
+    res.status(500).json({
+      message: "Failed to initiate Google authentication",
+      error: error.message,
+    })
   }
 })
 
-// Método para manejar el callback de Google OAuth
 const handleGoogleCallback = asyncHandler(async (req, res) => {
   try {
-    const { code } = req.query
-    const userId = req.user.userId
+    const { code, state } = req.query
 
-    if (!code) {
-      return res.status(400).json({ message: "Authorization code is required" })
+    if (!code || !state) {
+      return res.status(400).send("Missing authorization code or user identification")
     }
 
+    const userId = Number.parseInt(state)
     await googleCalendarService.exchangeCodeForTokens(userId, code)
 
-    // Redirigir a la página de calendario con un mensaje de éxito
-    res.redirect("/calendario?status=connected")
+    res.redirect(`${process.env.FRONTEND_URL || "http://localhost:3000"}/calendario?status=connected`)
   } catch (error) {
     console.error("Error handling Google callback:", error)
-    res.status(500).json({ message: "Failed to complete Google authentication", error: error.message })
+    res.redirect(`${process.env.FRONTEND_URL || "http://localhost:3000"}/calendario?status=error`)
   }
 })
 
-// Método para verificar el estado de conexión con Google Calendar
 const checkGoogleConnection = asyncHandler(async (req, res) => {
   try {
     const isConnected = await googleCalendarService.isUserConnected(req.user.userId)
     res.json({ connected: isConnected })
   } catch (error) {
     console.error("Error checking Google connection:", error)
-    res.status(500).json({ message: "Failed to check Google connection", error: error.message })
+    res.status(500).json({
+      message: "Failed to check Google connection",
+      error: error.message,
+    })
   }
 })
 
@@ -49,14 +51,21 @@ const syncWithGoogleCalendar = asyncHandler(async (req, res) => {
   try {
     const syncResult = await eventService.syncWithGoogleCalendar(req.user.userId)
     res.json({
-      message: "Events synced with Google Calendar successfully",
+      message: "Events synced successfully",
       stats: syncResult,
     })
   } catch (error) {
     console.error("Error syncing with Google Calendar:", error)
 
-    // Manejo específico de errores comunes
-    if (error.message.includes("invalid_grant") || error.message.includes("token expired")) {
+    if (error.message.includes("not connected")) {
+      return res.status(401).json({
+        message: "Google Calendar not connected",
+        error: error.message,
+        action: "connect",
+      })
+    }
+
+    if (error.message.includes("expired")) {
       return res.status(401).json({
         message: "Google Calendar authorization expired",
         error: error.message,
@@ -64,7 +73,10 @@ const syncWithGoogleCalendar = asyncHandler(async (req, res) => {
       })
     }
 
-    res.status(500).json({ message: "Failed to sync with Google Calendar", error: error.message })
+    res.status(500).json({
+      message: "Failed to sync with Google Calendar",
+      error: error.message,
+    })
   }
 })
 
@@ -74,34 +86,26 @@ const getAllEvents = asyncHandler(async (req, res) => {
     res.json(events)
   } catch (error) {
     console.error("Error fetching events:", error)
-    res.status(500).json({ message: "Failed to fetch events", error: error.message })
+    res.status(500).json({
+      message: "Failed to fetch events",
+      error: error.message,
+    })
   }
 })
 
 const createEvent = asyncHandler(async (req, res) => {
   try {
-    console.log("Creando nuevo evento:", req.body.title, "para usuario:", req.user.userId)
-    const nuevoEvento = await eventService.createEvent(req.user.userId, req.body)
+    const newEvent = await eventService.createEvent(req.user.userId, req.body)
 
-    // Generar notificación
-    console.log("Generando notificación para nuevo evento")
-    await notificationTriggers.onEventCreated(nuevoEvento)
-    console.log("Notificación generada exitosamente")
+    await notificationTriggers.onEventCreated(newEvent)
 
-    res.status(201).json(nuevoEvento)
+    res.status(201).json(newEvent)
   } catch (error) {
-    console.error("Error al crear evento:", error)
-
-    // Manejo específico de errores de Google Calendar
-    if (error.message.includes("Google Calendar")) {
-      return res.status(207).json({
-        message: "Event created locally but failed to sync with Google Calendar",
-        event: error.localEvent,
-        googleError: error.message,
-      })
-    }
-
-    res.status(500).json({ message: "Error al crear evento", error: error.message })
+    console.error("Error creating event:", error)
+    res.status(500).json({
+      message: "Failed to create event",
+      error: error.message,
+    })
   }
 })
 
@@ -114,16 +118,10 @@ const updateEvent = asyncHandler(async (req, res) => {
     })
   } catch (error) {
     console.error("Error updating event:", error)
-
-    // Manejo específico de errores de Google Calendar
-    if (error.message.includes("Google Calendar")) {
-      return res.status(207).json({
-        message: "Event updated locally but failed to sync with Google Calendar",
-        googleError: error.message,
-      })
-    }
-
-    res.status(500).json({ message: "Failed to update event", error: error.message })
+    res.status(500).json({
+      message: "Failed to update event",
+      error: error.message,
+    })
   }
 })
 
@@ -133,16 +131,10 @@ const deleteEvent = asyncHandler(async (req, res) => {
     res.json({ message: "Event deleted successfully" })
   } catch (error) {
     console.error("Error deleting event:", error)
-
-    // Manejo específico de errores de Google Calendar
-    if (error.message.includes("Google Calendar")) {
-      return res.status(207).json({
-        message: "Event deleted locally but failed to delete from Google Calendar",
-        googleError: error.message,
-      })
-    }
-
-    res.status(500).json({ message: "Failed to delete event", error: error.message })
+    res.status(500).json({
+      message: "Failed to delete event",
+      error: error.message,
+    })
   }
 })
 

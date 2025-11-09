@@ -12,6 +12,12 @@ const notificationController = {
     res.json(notifications)
   }),
 
+  getNotificationDetails: asyncHandler(async (req, res) => {
+    const notificationId = req.params.id
+    const details = await notificationService.getNotificationDetails(notificationId)
+    res.json(details)
+  }),
+
   markAsRead: asyncHandler(async (req, res) => {
     const userId = req.user.id || req.user.userId
     const notificationId = req.params.id
@@ -37,7 +43,46 @@ const notificationController = {
     const notificationId = await notificationService.createNotification(userId, message, type, module, link)
     res.status(201).json({ id: notificationId, message: "Notification created" })
   }),
+
+  getByPriority: asyncHandler(async (req, res) => {
+    const userId = req.user.id || req.user.userId
+    const { priority } = req.params
+    const notifications = await notificationService.getNotificationsByPriority(userId, priority)
+    res.json(notifications)
+  }),
+
+  archiveNotification: asyncHandler(async (req, res) => {
+    const userId = req.user.id || req.user.userId
+    const { id } = req.params
+    const { reason } = req.body
+    await notificationService.archiveNotification(userId, id, reason)
+    res.json({ message: "Notification archived" })
+  }),
+
+  pinNotification: asyncHandler(async (req, res) => {
+    const { id } = req.params
+    await notificationService.pinNotification(id)
+    res.json({ message: "Notification pinned" })
+  }),
+
+  executeAction: asyncHandler(async (req, res) => {
+    const userId = req.user.id || req.user.userId
+    const { notificationId, actionType, actionLabel } = req.body
+
+    await notificationService.executeNotificationAction(notificationId, userId, actionType, actionLabel)
+
+    // Broadcast action execution via WebSocket
+    if (req.app.notificationWebSocket) {
+      await req.app.notificationWebSocket.broadcastToUser(userId, {
+        type: "action_executed",
+        notificationId,
+        actionType,
+        status: "success",
+      })
+    }
+
+    res.json({ message: "Action executed successfully" })
+  }),
 }
 
 module.exports = notificationController
-

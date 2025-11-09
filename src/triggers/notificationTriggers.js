@@ -30,6 +30,26 @@ const notificationTriggers = {
     )
   },
 
+  async onClienteContactReminder(cliente) {
+    await notificationService.createNotificationForRole(
+      ROLES.COMERCIAL,
+      `Es hora de contactar a ${cliente.nombre} ${cliente.apellido}. Último contacto: ${cliente.ultimo_contacto ? new Date(cliente.ultimo_contacto).toLocaleDateString() : "No registrado"}`,
+      "warning",
+      "clientes",
+      "/clientes",
+    )
+  },
+
+  async onClienteContactUpdated(cliente) {
+    await notificationService.createNotificationForRole(
+      ROLES.COMERCIAL,
+      `Contacto actualizado para ${cliente.nombre} ${cliente.apellido}. Próximo contacto: ${new Date(cliente.proximo_contacto).toLocaleDateString()}`,
+      "info",
+      "clientes",
+      "/clientes",
+    )
+  },
+
   // Notificaciones para proyectos
   async onProjectUpdated(project) {
     await notificationService.createNotificationForRole(
