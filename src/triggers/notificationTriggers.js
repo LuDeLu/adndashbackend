@@ -84,13 +84,29 @@ const notificationTriggers = {
 
   // Notificaciones para eventos del calendario
   async onEventCreated(event) {
-    await notificationService.createNotification(
-      event.user_id,
-      `Nuevo evento: ${event.title} con ${event.client}`,
-      "info",
-      "calendario",
-      "/calendario",
-    )
+    const { getPool } = require("../config/database")
+    const pool = getPool()
+
+    try {
+      // Fetch client name from database
+      const [clients] = await pool.query(`SELECT nombre, apellido FROM clientes WHERE id = ?`, [event.client])
+
+      const clientName = clients.length > 0 ? `${clients[0].nombre} ${clients[0].apellido}` : `Cliente #${event.client}`
+
+      const message = `Nuevo evento: ${event.title} con ${clientName}`
+
+      await notificationService.createNotification(event.user_id, message, "info", "calendario", "/calendario")
+    } catch (error) {
+      console.error("[v0] Error creating event notification:", error)
+      // Fallback: create notification with client ID if error occurs
+      await notificationService.createNotification(
+        event.user_id,
+        `Nuevo evento: ${event.title}`,
+        "info",
+        "calendario",
+        "/calendario",
+      )
+    }
   },
 
   // Notificaciones para obras

@@ -3,12 +3,12 @@ const asyncHandler = require("../utils/asyncHandler")
 
 const notificationController = {
   getUserNotifications: asyncHandler(async (req, res) => {
-    console.log("Solicitud de notificaciones recibida para usuario:", req.user)
+    console.log("[v0] Notifications request received for user:", req.user)
     const userId = req.user.id || req.user.userId
-    console.log("Buscando notificaciones para el usuario ID:", userId)
+    console.log("[v0] Fetching notifications for user ID:", userId)
 
     const notifications = await notificationService.getUserNotifications(userId)
-    console.log(`Enviando ${notifications.length} notificaciones al cliente`)
+    console.log(`[v0] Sending ${notifications.length} notifications to client`)
     res.json(notifications)
   }),
 

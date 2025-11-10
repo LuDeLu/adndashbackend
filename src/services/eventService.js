@@ -44,7 +44,14 @@ class EventService {
       [userId, title, client, new Date(start), new Date(end), description || null, location || null, googleEventId],
     )
 
-    const [newEvent] = await pool.query("SELECT * FROM events WHERE id = ?", [result.insertId])
+    const [newEvent] = await pool.query(
+      `SELECT e.*, CONCAT(c.nombre, ' ', c.apellido) as clientName
+       FROM events e
+       LEFT JOIN clientes c ON e.client = c.id
+       WHERE e.id = ?`,
+      [result.insertId],
+    )
+
     return newEvent[0]
   }
 

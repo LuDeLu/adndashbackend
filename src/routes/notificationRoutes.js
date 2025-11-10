@@ -11,5 +11,6 @@ router.patch("/read-all", authenticateToken, notificationController.markAllAsRea
 router.delete("/:id", authenticateToken, notificationController.deleteNotification)
 router.post("/", authenticateToken, notificationController.createNotification)
 
+router.post("/mark-all-read", authenticateToken, notificationController.markAllAsRead)
 
 module.exports = router
