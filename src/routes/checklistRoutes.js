@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const { authenticateToken } = require("../middleware/auth")
 const checklistController = require("../controllers/checklistController")
-const { generatePDFHandler } = require("../controllers/pdfController") // Ajusta la ruta según tu estructura
+const { generatePDFHandler } = require("../controllers/pdfController")
 
 // Rutas básicas CRUD
 router.get("/", authenticateToken, checklistController.getAllTickets)
@@ -15,6 +15,8 @@ router.delete("/:id", authenticateToken, checklistController.deleteTicket)
 router.post("/:id/approve", authenticateToken, checklistController.approveTicket)
 router.get("/stats", authenticateToken, checklistController.getTicketStats)
 router.get("/search", authenticateToken, checklistController.searchTickets)
+
+router.get("/:id/download-pdf", authenticateToken, checklistController.downloadTicketPDF)
 
 // Ruta para generar PDF
 router.post("/generate-pdf", authenticateToken, generatePDFHandler)

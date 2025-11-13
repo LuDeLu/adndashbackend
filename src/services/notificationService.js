@@ -108,11 +108,11 @@ class NotificationService {
       if (sentTo === "all") {
         await pool.query(
           `INSERT IGNORE INTO notification_recipients (notification_id, user_id)
-          SELECT ?, id FROM usuarios WHERE activo = 1`,
+          SELECT ?, id FROM users WHERE 1=1`,
           [notificationId],
         )
       } else if (sentTo === "role" && roleId) {
-        const [users] = await pool.query(`SELECT id FROM usuarios WHERE rol_id = ? AND activo = 1`, [roleId])
+        const [users] = await pool.query(`SELECT id FROM users WHERE rol_id = ? LIMIT 1000`, [roleId])
 
         for (const user of users) {
           await pool.query(`INSERT IGNORE INTO notification_recipients (notification_id, user_id) VALUES (?, ?)`, [
@@ -137,7 +137,7 @@ class NotificationService {
         WHERE (sent_to = 'all' OR user_id = ? OR EXISTS(
           SELECT 1 FROM notification_recipients WHERE notification_id = notifications.id AND user_id = ?
         ))
-        AND priority = ?
+        AND priority = ? 
         AND archived = 0
         AND (expires_at IS NULL OR expires_at > NOW())
         ORDER BY created_at DESC
@@ -323,16 +323,16 @@ class NotificationService {
     try {
       await pool.query(
         `INSERT INTO notification_reads (notification_id, user_id)
-        SELECT n.id, ?
+        SELECT n.id, ? 
         FROM notifications n
-        LEFT JOIN notification_reads nr ON n.id = nr.notification_id AND nr.user_id = ?
+        LEFT JOIN notification_reads nr ON n.id = nr.notification_id AND nr.user_id = ? 
         WHERE nr.id IS NULL AND (
           n.sent_to = 'all' OR
           EXISTS (
             SELECT 1 FROM notification_recipients nrec 
-            WHERE nrec.notification_id = n.id AND nrec.user_id = ?
+            WHERE nrec.notification_id = n.id AND nrec.user_id = ? 
           ) OR
-          n.user_id = ?
+          n.user_id = ? 
         )
         ON DUPLICATE KEY UPDATE read_at = CURRENT_TIMESTAMP`,
         [userId, userId, userId, userId],
@@ -374,7 +374,7 @@ class NotificationService {
       if (sentTo === "all") {
         await pool.query(
           `INSERT IGNORE INTO notification_recipients (notification_id, user_id)
-          SELECT ?, id FROM usuarios WHERE activo = 1`,
+          SELECT ?, id FROM users WHERE 1=1`,
           [result.insertId],
         )
       }
@@ -390,7 +390,7 @@ class NotificationService {
     const pool = getPool()
     try {
       console.log(`Creating notifications for role ${roleId}: ${message}`)
-      const [users] = await pool.query("SELECT id FROM usuarios WHERE rol_id = ? AND activo = 1", [roleId])
+      const [users] = await pool.query("SELECT id FROM users WHERE rol_id = ? LIMIT 1000", [roleId])
       console.log(`Found ${users.length} users with role ${roleId}`)
 
       const notificationId = await this.createNotification(1, message, type, module, link, "role", roleId)
