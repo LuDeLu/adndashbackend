@@ -46,4 +46,3 @@ const notificationHelper = {
 }
 
 module.exports = notificationHelper
-

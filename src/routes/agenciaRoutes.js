@@ -8,4 +8,3 @@ router.get('/emprendimientos', authenticateToken, agenciaController.getAllEmpren
 router.get('/tipologias', authenticateToken, agenciaController.getAllTipologias);
 
 module.exports = router;
-

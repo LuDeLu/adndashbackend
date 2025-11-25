@@ -147,4 +147,3 @@ class ClienteService {
 }
 
 module.exports = new ClienteService();
-

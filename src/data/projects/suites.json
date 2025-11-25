@@ -1,0 +1,15 @@
+{
+  "project": "suites",
+  "owners": {
+    "102": {
+      "name": "Nicolas  Mazzotti",
+      "email": "sistemas@adndevelopers.com.ar",
+      "phone": "31903762",
+      "type": "Inversor",
+      "assignedAt": "2025-11-25T08:24:59.019Z"
+    }
+  },
+  "statuses": {},
+  "updatedAt": "2025-11-25T08:24:59.044Z",
+  "createdAt": "2025-01-01T00:00:00.000Z"
+}

@@ -10,4 +10,3 @@ router.delete('/:id', authenticateToken, clienteController.deleteCliente);
 router.patch('/:id', authenticateToken, clienteController.updateContactDates);
 
 module.exports = router;
-
