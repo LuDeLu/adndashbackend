@@ -22,6 +22,7 @@ const getEmptyProjectData = (projectName) => ({
   project: projectName,
   owners: {},
   statuses: {},
+  parkingAssignments: {}, // New field for parking assignments per unit
   updatedAt: new Date().toISOString(),
   createdAt: new Date().toISOString(),
 })
@@ -39,7 +40,11 @@ const readProjectData = (projectName) => {
 
   try {
     const data = fs.readFileSync(filePath, "utf8")
-    return JSON.parse(data)
+    const parsedData = JSON.parse(data)
+    if (!parsedData.parkingAssignments) {
+      parsedData.parkingAssignments = {}
+    }
+    return parsedData
   } catch (error) {
     console.error(`Error reading project data for ${projectName}:`, error)
     return getEmptyProjectData(projectName)
@@ -90,7 +95,7 @@ exports.getProjectData = async (req, res) => {
 exports.updateProjectData = async (req, res) => {
   try {
     const { projectName } = req.params
-    const { owners, statuses } = req.body
+    const { owners, statuses, parkingAssignments } = req.body
 
     if (!VALID_PROJECTS.includes(projectName)) {
       return res.status(400).json({
@@ -105,6 +110,7 @@ exports.updateProjectData = async (req, res) => {
       ...currentData,
       owners: owners || currentData.owners,
       statuses: statuses || currentData.statuses,
+      parkingAssignments: parkingAssignments || currentData.parkingAssignments,
     }
 
     const success = writeProjectData(projectName, updatedData)
@@ -260,6 +266,125 @@ exports.updateStatus = async (req, res) => {
   }
 }
 
+exports.assignParking = async (req, res) => {
+  try {
+    const { projectName } = req.params
+    const { unitId, parkingSpots } = req.body
+
+    if (!VALID_PROJECTS.includes(projectName)) {
+      return res.status(400).json({
+        success: false,
+        message: `Invalid project name. Valid projects: ${VALID_PROJECTS.join(", ")}`,
+      })
+    }
+
+    if (!unitId || !parkingSpots) {
+      return res.status(400).json({
+        success: false,
+        message: "unitId and parkingSpots are required",
+      })
+    }
+
+    const data = readProjectData(projectName)
+
+    // parkingSpots is an array of parking spot IDs assigned to this unit
+    data.parkingAssignments[unitId] = {
+      parkingSpots: parkingSpots, // Array of parking IDs like ["a1", "b2"]
+      assignedAt: new Date().toISOString(),
+    }
+
+    const success = writeProjectData(projectName, data)
+
+    if (success) {
+      res.json({
+        success: true,
+        message: `Cocheras asignadas a unidad ${unitId}`,
+        data: data.parkingAssignments[unitId],
+      })
+    } else {
+      res.status(500).json({
+        success: false,
+        message: "Error al guardar las cocheras",
+      })
+    }
+  } catch (error) {
+    console.error("Error assigning parking:", error)
+    res.status(500).json({
+      success: false,
+      message: "Error al asignar cocheras",
+    })
+  }
+}
+
+exports.removeParking = async (req, res) => {
+  try {
+    const { projectName, unitId } = req.params
+
+    if (!VALID_PROJECTS.includes(projectName)) {
+      return res.status(400).json({
+        success: false,
+        message: `Invalid project name. Valid projects: ${VALID_PROJECTS.join(", ")}`,
+      })
+    }
+
+    const data = readProjectData(projectName)
+
+    if (data.parkingAssignments[unitId]) {
+      delete data.parkingAssignments[unitId]
+      writeProjectData(projectName, data)
+    }
+
+    res.json({
+      success: true,
+      message: `Cocheras eliminadas de unidad ${unitId}`,
+    })
+  } catch (error) {
+    console.error("Error removing parking:", error)
+    res.status(500).json({
+      success: false,
+      message: "Error al eliminar cocheras",
+    })
+  }
+}
+
+exports.removeParkingSpot = async (req, res) => {
+  try {
+    const { projectName, unitId, parkingId } = req.params
+
+    if (!VALID_PROJECTS.includes(projectName)) {
+      return res.status(400).json({
+        success: false,
+        message: `Invalid project name. Valid projects: ${VALID_PROJECTS.join(", ")}`,
+      })
+    }
+
+    const data = readProjectData(projectName)
+
+    if (data.parkingAssignments[unitId]) {
+      const currentSpots = data.parkingAssignments[unitId].parkingSpots || []
+      data.parkingAssignments[unitId].parkingSpots = currentSpots.filter((id) => id !== parkingId)
+
+      // If no more parking spots, remove the assignment entirely
+      if (data.parkingAssignments[unitId].parkingSpots.length === 0) {
+        delete data.parkingAssignments[unitId]
+      }
+
+      writeProjectData(projectName, data)
+    }
+
+    res.json({
+      success: true,
+      message: `Cochera ${parkingId} eliminada de unidad ${unitId}`,
+    })
+  } catch (error) {
+    console.error("Error removing parking spot:", error)
+    res.status(500).json({
+      success: false,
+      message: "Error al eliminar cochera",
+    })
+  }
+}
+
 // GET /api/project-data - Get list of all projects with summary
 exports.getAllProjects = async (req, res) => {
   try {
@@ -269,6 +394,7 @@ exports.getAllProjects = async (req, res) => {
         project: projectName,
         totalOwners: Object.keys(data.owners).length,
         totalStatuses: Object.keys(data.statuses).length,
+        totalParkingAssignments: Object.keys(data.parkingAssignments || {}).length,
         updatedAt: data.updatedAt,
       }
     })

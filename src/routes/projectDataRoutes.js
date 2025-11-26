@@ -21,4 +21,13 @@ router.delete("/:projectName/owner/:unitId", authenticateToken, projectDataContr
 // Update status for a unit
 router.post("/:projectName/status", authenticateToken, projectDataController.updateStatus)
 
+// Assign parking spots to a unit
+router.post("/:projectName/parking", authenticateToken, projectDataController.assignParking)
+
+// Remove all parking from a unit
+router.delete("/:projectName/parking/:unitId", authenticateToken, projectDataController.removeParking)
+
+// Remove single parking spot from a unit
+router.delete("/:projectName/parking/:unitId/:parkingId", authenticateToken, projectDataController.removeParkingSpot)
+
 module.exports = router
