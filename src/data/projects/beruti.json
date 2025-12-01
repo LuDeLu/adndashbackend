@@ -1,45 +1,8 @@
 {
   "project": "beruti",
-  "owners": {
-    "101": {
-      "name": "Nicolas  Mazzotti",
-      "email": "sistemas@adndevelopers.com.ar",
-      "phone": "31903762",
-      "type": "Inversor",
-      "assignedAt": "2025-11-26T09:18:42.353Z"
-    }
-  },
-  "statuses": {
-    "101": {
-      "id": "101",
-      "status": "VENDIDO",
-      "changedAt": "2025-12-01T07:05:44.775Z",
-      "changedBy": "Lu De Lu",
-      "notes": "asd"
-    },
-    "102": {
-      "id": "102",
-      "status": "DISPONIBLE",
-      "changedAt": "2025-12-01T07:09:18.585Z",
-      "changedBy": "Lu De Lu"
-    },
-    "103": {
-      "id": "103",
-      "status": "DISPONIBLE",
-      "changedAt": "2025-12-01T07:07:43.814Z",
-      "changedBy": "Lu De Lu"
-    }
-  },
-  "updatedAt": "2025-12-01T07:09:18.606Z",
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "parkingAssignments": {
-    "101": {
-      "parkingSpots": [
-        "A1",
-        "A2",
-        "A3"
-      ],
-      "assignedAt": "2025-11-26T09:18:47.076Z"
-    }
-  }
+  "owners": {},
+  "statuses": {},
+  "updatedAt": "",
+  "createdAt": "",
+  "parkingAssignments": {}
 }
