@@ -2,6 +2,14 @@
   "project": "boulevard",
   "owners": {},
   "statuses": {},
-  "updatedAt": "2025-01-01T00:00:00.000Z",
+  "parkingAssignments": {
+    "101": {
+      "parkingSpots": [
+        "a1"
+      ],
+      "assignedAt": "2025-12-01T06:31:05.699Z"
+    }
+  },
+  "updatedAt": "2025-12-01T06:31:05.699Z",
   "createdAt": "2025-01-01T00:00:00.000Z"
 }

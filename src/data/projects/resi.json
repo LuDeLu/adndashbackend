@@ -2,6 +2,14 @@
   "project": "resi",
   "owners": {},
   "statuses": {},
-  "updatedAt": "2025-01-01T00:00:00.000Z",
+  "parkingAssignments": {
+    "101": {
+      "parkingSpots": [
+        "A1"
+      ],
+      "assignedAt": "2025-12-01T06:30:54.553Z"
+    }
+  },
+  "updatedAt": "2025-12-01T06:30:54.553Z",
   "createdAt": "2025-01-01T00:00:00.000Z"
 }

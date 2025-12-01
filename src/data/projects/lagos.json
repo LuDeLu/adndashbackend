@@ -1,7 +1,16 @@
 {
   "project": "lagos",
-  "owners": {},
+  "owners": {
+    "101": {
+      "name": "Nicolas  Mazzotti",
+      "email": "sistemas@adndevelopers.com.ar",
+      "phone": "31903762",
+      "type": "Inversor",
+      "assignedAt": "2025-12-01T06:30:47.522Z"
+    }
+  },
   "statuses": {},
-  "updatedAt": "2025-01-01T00:00:00.000Z",
+  "parkingAssignments": {},
+  "updatedAt": "2025-12-01T06:30:47.545Z",
   "createdAt": "2025-01-01T00:00:00.000Z"
 }
