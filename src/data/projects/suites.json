@@ -1,8 +1,859 @@
 {
   "project": "suites",
-  "owners": {},
-  "statuses": {},
-  "parkingAssignments": {},
-  "updatedAt": "",
+  "owners": {
+    "103": {
+      "name": "Sebastián Antonio  Paladino",
+      "email": "sebastianpaladino@outlook.com",
+      "phone": "11 3426 3644",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:22:21.787Z"
+    },
+    "104": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:56:48.498Z"
+    },
+    "105": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:56:54.778Z"
+    },
+    "106": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:57:56.188Z"
+    },
+    "107": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:58:23.614Z"
+    },
+    "108": {
+      "name": "Leonardo Cesar Perez",
+      "email": "leonardoperez1981@hotmail.com.ar",
+      "phone": "2645 60-6530",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:24:35.030Z"
+    },
+    "109": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:58:31.043Z"
+    },
+    "110": {
+      "name": "Leonardo Cesar Perez",
+      "email": "leonardoperez1981@hotmail.com.ar",
+      "phone": "2645 60-6530",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:24:43.657Z"
+    },
+    "111": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:58:40.374Z"
+    },
+    "113": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:58:50.513Z"
+    },
+    "114": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:59:09.140Z"
+    },
+    "115": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:59:01.756Z"
+    },
+    "116": {
+      "name": "Julio Flavio Cedran",
+      "email": "-",
+      "phone": "11-6918-7044",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:58:06.684Z"
+    },
+    "117": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:59:22.424Z"
+    },
+    "202": {
+      "name": "Kim Soo Yeun",
+      "email": "adrianakim71@gmail.com",
+      "phone": "11 6509 3185",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:27:49.855Z"
+    },
+    "205": {
+      "name": "Agustín  Sottini",
+      "email": "agustinsottini@hotmail.com",
+      "phone": "11 5336 9102",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:24:17.146Z"
+    },
+    "206": {
+      "name": "Claudia Asteggiano",
+      "email": "clausteggiano01@hotmail.com",
+      "phone": "11 3426 3117",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:25:45.815Z"
+    },
+    "207": {
+      "name": "Julio Cesar Mateo",
+      "email": "juliomcmateo1@gmail.com",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:27:06.498Z"
+    },
+    "208": {
+      "name": "Lucas  Goldman",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:35:17.455Z"
+    },
+    "209": {
+      "name": "Monica Bobrowski",
+      "email": "mbobrowsk@gmail.com",
+      "phone": "11 5847 8250",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:28:04.711Z"
+    },
+    "211": {
+      "name": "Maximiliano Abruzzense",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:42:55.940Z"
+    },
+    "212": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:01:50.233Z"
+    },
+    "213": {
+      "name": "WENDY DAIANA SZMID",
+      "email": "-",
+      "phone": "15-4532-2667",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:21:52.306Z"
+    },
+    "214": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:02:04.593Z"
+    },
+    "215": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:02:53.256Z"
+    },
+    "216": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:02:17.410Z"
+    },
+    "217": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:02:59.222Z"
+    },
+    "218": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:02:24.156Z"
+    },
+    "219": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:03:15.407Z"
+    },
+    "220": {
+      "name": "Joong Myung Kim",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:09:01.867Z"
+    },
+    "221": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:03:21.364Z"
+    },
+    "222": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:03:38.024Z"
+    },
+    "223": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:03:26.502Z"
+    },
+    "224": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:03:31.700Z"
+    },
+    "303": {
+      "name": "Dellanoy Bertora",
+      "email": "juan.delannoy@gmail.com",
+      "phone": "11 5782 4016",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:03:07.577Z"
+    },
+    "309": {
+      "name": "Patricio Eloy Fletcher",
+      "email": "patriciofletcher@gmail.com",
+      "phone": "11 5174 1199",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:04:07.220Z"
+    },
+    "310": {
+      "name": "Agustina Nadia  Polito",
+      "email": "-",
+      "phone": "11 3383 5809",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:29:42.826Z"
+    },
+    "311": {
+      "name": "Lucas Jaime Buenos",
+      "email": "lucasbuenos@arlenefern.edu.ar",
+      "phone": "11 6687 1071",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:08:20.219Z"
+    },
+    "312": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:07:21.959Z"
+    },
+    "313": {
+      "name": "Martin Javier Villaggi",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:40:06.932Z"
+    },
+    "314": {
+      "name": "Christian Chung",
+      "email": "chrischung48@gmail.com",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:44:51.330Z"
+    },
+    "315": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:07:39.301Z"
+    },
+    "316": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:08:12.783Z"
+    },
+    "317": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:08:29.625Z"
+    },
+    "318": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:08:44.103Z"
+    },
+    "319": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:09:24.208Z"
+    },
+    "320": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:08:51.102Z"
+    },
+    "321": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:09:17.974Z"
+    },
+    "322": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:08:56.727Z"
+    },
+    "324": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:09:10.618Z"
+    },
+    "401": {
+      "name": "Matías  Sandler",
+      "email": "-",
+      "phone": "11 5517 9663",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:31:10.690Z"
+    },
+    "408": {
+      "name": "Valeria Chantal  Abadi",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:26:24.779Z"
+    },
+    "409": {
+      "name": "Christian Roberto  Faillace",
+      "email": "chrisrobfaillace@gmail.com",
+      "phone": "11 4070 2295",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:32:04.418Z"
+    },
+    "411": {
+      "name": "Juan Manuel Esposito",
+      "email": "jmesposito97@gmail.com",
+      "phone": "11 6092-7994",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:48:49.932Z"
+    },
+    "412": {
+      "name": "Diego Martinelli",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:35:40.977Z"
+    },
+    "414": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:10:43.233Z"
+    },
+    "417": {
+      "name": "Jose Emilio Salim Camel",
+      "email": "camelsalim@yahoo.com.ar",
+      "phone": "9 381 508 9828",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:02:00.942Z"
+    },
+    "418": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:10:51.174Z"
+    },
+    "419": {
+      "name": "Jae Sung Oh",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:05:20.088Z"
+    },
+    "420": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:11:03.300Z"
+    },
+    "421": {
+      "name": "Jae Sung Oh",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:05:32.680Z"
+    },
+    "422": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:11:10.153Z"
+    },
+    "423": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:11:22.430Z"
+    },
+    "424": {
+      "name": "Nicolas  Mazzotti",
+      "email": "sistemas@adndevelopers.com.ar",
+      "phone": "31903762",
+      "type": "Inversor",
+      "assignedAt": "2025-12-01T15:44:56.250Z"
+    },
+    "501": {
+      "name": "Nicolas  Mazzotti",
+      "email": "sistemas@adndevelopers.com.ar",
+      "phone": "31903762",
+      "type": "Inversor",
+      "assignedAt": "2025-12-01T13:57:22.151Z"
+    },
+    "508": {
+      "name": "Dora Malvina  Bozzone",
+      "email": "lucianatassano.lt@gmail.com",
+      "phone": "11 6799-9639",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:00:07.393Z"
+    },
+    "509": {
+      "name": "Martin  Forti",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:32:02.455Z"
+    },
+    "510": {
+      "name": "David Miguel  Buenos",
+      "email": "-",
+      "phone": "11 5185 6537",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:57:35.568Z"
+    },
+    "511": {
+      "name": "Elizhabeth Miriam  Lurje",
+      "email": "daniel2.maldonado@outlook.com",
+      "phone": "11 6016 5121",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:59:08.095Z"
+    },
+    "514": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:11:43.374Z"
+    },
+    "516": {
+      "name": "Laura Andrea Iturralde",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:06:21.478Z"
+    },
+    "517": {
+      "name": "Jae Sung Oh",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:06:29.145Z"
+    },
+    "518": {
+      "name": "Joong Myung Kim",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:09:26.183Z"
+    },
+    "519": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:11:58.223Z"
+    },
+    "520": {
+      "name": "Joong Myung Kim",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:09:32.049Z"
+    },
+    "521": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:12:03.249Z"
+    },
+    "523": {
+      "name": "Walter Gustavo Crespo",
+      "email": "-",
+      "phone": "9 381 584 0960",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:10:30.109Z"
+    },
+    "602": {
+      "name": "Damian Ernesto Roguin",
+      "email": "",
+      "phone": "11 5473 2592",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:48:07.687Z"
+    },
+    "606": {
+      "name": "Damian Rios",
+      "email": "",
+      "phone": "11 6284 6283",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:40:50.162Z"
+    },
+    "607": {
+      "name": "Damian Rios",
+      "email": "",
+      "phone": "11 6284 6283",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:40:57.273Z"
+    },
+    "611": {
+      "name": "Sarotello Chirio",
+      "email": "esartorello@yahoo.com.ar ferchirio@gmail.com",
+      "phone": "",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:51:02.422Z"
+    },
+    "612": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:14:19.609Z"
+    },
+    "613": {
+      "name": "Walter Gustavo Crespo",
+      "email": "-",
+      "phone": "9 381 584 0960",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:11:04.098Z"
+    },
+    "614": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:14:34.997Z"
+    },
+    "615": {
+      "name": "Walter Gustavo Crespo",
+      "email": "-",
+      "phone": "9 381 584 0960",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:11:52.526Z"
+    },
+    "616": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:14:47.345Z"
+    },
+    "617": {
+      "name": "Walter Gustavo Crespo",
+      "email": "-",
+      "phone": "9 381 584 0960",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:11:17.731Z"
+    },
+    "619": {
+      "name": "Walter Gustavo Crespo",
+      "email": "-",
+      "phone": "9 381 584 0960",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:11:23.496Z"
+    },
+    "620": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:14:59.897Z"
+    },
+    "621": {
+      "name": "Walter Gustavo Crespo",
+      "email": "-",
+      "phone": "9 381 584 0960",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:11:35.222Z"
+    },
+    "623": {
+      "name": "Walter Gustavo Crespo",
+      "email": "-",
+      "phone": "9 381 584 0960",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:11:39.980Z"
+    },
+    "624": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:15:06.929Z"
+    },
+    "704": {
+      "name": "Patricio Eloy Fletcher",
+      "email": "patriciofletcher@gmail.com",
+      "phone": "11 5174 1199",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:13:25.863Z"
+    },
+    "707": {
+      "name": "Gabriel Slavinsky",
+      "email": "info@propaganda6.com.ar",
+      "phone": "11 3070-4924",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:29:44.592Z"
+    },
+    "708": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:15:18.735Z"
+    },
+    "709": {
+      "name": "Gabriel Slavinsky",
+      "email": "info@propaganda6.com.ar",
+      "phone": "11 3070-4924",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:29:59.387Z"
+    },
+    "710": {
+      "name": "Sergio Grimbaltt",
+      "email": "-",
+      "phone": "11 6254-3753",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:23:09.781Z"
+    },
+    "711": {
+      "name": "Patricio Eloy Fletcher",
+      "email": "patriciofletcher@gmail.com",
+      "phone": "11 5174 1199",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:13:33.446Z"
+    },
+    "712": {
+      "name": "Sergio Grimbaltt",
+      "email": "-",
+      "phone": "11 6254-3753",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:23:16.837Z"
+    },
+    "713": {
+      "name": "Martin Enrique  Vazquez",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:22:23.282Z"
+    },
+    "715": {
+      "name": "David  Cho",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:17:25.000Z"
+    },
+    "717": {
+      "name": "Walter Gustavo Crespo",
+      "email": "-",
+      "phone": "9 381 584 0960",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:12:29.640Z"
+    },
+    "803": {
+      "name": "Hector Rojas Decut",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:34:03.787Z"
+    },
+    "804": {
+      "name": "Patricio Eloy Fletcher",
+      "email": "patriciofletcher@gmail.com",
+      "phone": "11 5174 1199",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:13:48.887Z"
+    },
+    "805": {
+      "name": "Claudio Ariel  Lurje",
+      "email": "claudiolurje@yahoo.com.ar",
+      "phone": "11 5622 - 9176",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:24:22.912Z"
+    },
+    "808": {
+      "name": "Martin Javier Villaggi",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:40:17.341Z"
+    },
+    "809": {
+      "name": "Patricio Eloy Fletcher",
+      "email": "patriciofletcher@gmail.com",
+      "phone": "11 5174 1199",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:15:36.219Z"
+    },
+    "810": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:15:34.741Z"
+    },
+    "812": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:15:40.820Z"
+    },
+    "814": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:15:50.602Z"
+    },
+    "815": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:15:56.227Z"
+    },
+    "816": {
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T15:16:02.073Z"
+    },
+    "817": {
+      "name": "Walter Gustavo Crespo",
+      "email": "-",
+      "phone": "9 381 584 0960",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:12:41.995Z"
+    },
+    "911": {
+      "name": "Juan Martín Aibar",
+      "email": "maibar@amhys.com.ar",
+      "phone": "11 6397-0941",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:18:48.469Z"
+    },
+    "913": {
+      "name": "Juan Martín Aibar",
+      "email": "maibar@amhys.com.ar",
+      "phone": "11 6397-0941",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T13:18:59.218Z"
+    },
+    "1109": {
+      "name": "Santiago Brayer",
+      "email": "santiagobrayer@gmail.com",
+      "phone": "11 6463-4647",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-01T14:25:11.407Z"
+    }
+  },
+  "statuses": {
+    "310": {
+      "id": "310",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-01T13:29:09.629Z",
+      "changedBy": "Diego Stoler"
+    },
+    "401": {
+      "id": "401",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-01T13:30:31.496Z",
+      "changedBy": "Diego Stoler"
+    },
+    "501": {
+      "id": "501",
+      "status": "DISPONIBLE",
+      "changedAt": "2025-12-01T13:56:37.357Z",
+      "changedBy": "Diego Stoler"
+    },
+    "510": {
+      "id": "510",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-01T13:58:18.462Z",
+      "changedBy": "Diego Stoler"
+    },
+    "715": {
+      "id": "715",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-01T14:19:41.775Z",
+      "changedBy": "Diego Stoler"
+    }
+  },
+  "parkingAssignments": {
+    "1207": {
+      "parkingSpots": [
+        "C60"
+      ],
+      "assignedAt": "2025-12-01T13:39:56.539Z"
+    }
+  },
+  "updatedAt": "2025-12-01T15:48:07.526Z",
   "createdAt": ""
 }

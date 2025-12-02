@@ -1,8 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const authController = require('../controllers/authController');
+const express = require("express")
+const router = express.Router()
+const authController = require("../controllers/authController")
 
-router.post('/login', authController.login);
-router.post('/google-login', authController.googleLogin);
+router.post("/login", authController.login)
+router.post("/google-login", authController.googleLogin)
+router.post("/refresh-token", authController.refreshToken)
+router.get("/validate-token", authController.validateToken)
 
-module.exports = router;
+module.exports = router
