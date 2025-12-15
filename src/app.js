@@ -74,6 +74,7 @@ async function initializeApp() {
     const parkingRoutes = require("./routes/parkingRoutes")
     const activityLogRoutes = require("./routes/activityLogRoutes")
     const projectDataRoutes = require("./routes/projectDataRoutes")
+    const statisticsRoutes = require("./routes/statisticsRoutes")
 
     // Configurar rutas
     app.use("/api/clientes", clienteRoutes)
@@ -90,6 +91,7 @@ async function initializeApp() {
     app.use("/api/parking", parkingRoutes)
     app.use("/api/activity-logs", activityLogRoutes)
     app.use("/api/project-data", projectDataRoutes)
+    app.use("/api/statistics", statisticsRoutes)
 
     // Health check endpoint
     app.get("/api/health", (req, res) => {
