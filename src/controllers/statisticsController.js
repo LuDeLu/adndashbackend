@@ -70,7 +70,7 @@ const getGlobalStatistics = asyncHandler(async (req, res) => {
         SUM(CASE WHEN status = 'Pendiente' THEN 1 ELSE 0 END) as pending,
         SUM(CASE WHEN status = 'En Proceso' THEN 1 ELSE 0 END) as in_progress,
         SUM(CASE WHEN status = 'Completado' THEN 1 ELSE 0 END) as completed
-      FROM checklist_tickets
+      FROM 	reclamos
     `
 
     const [ticketStats] = await pool.execute(ticketsQuery)

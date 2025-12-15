@@ -33,7 +33,7 @@ router.get("/global", authenticateToken, async (req, res) => {
         SUM(CASE WHEN status = 'pendiente' OR status = 'Pendiente' THEN 1 ELSE 0 END) as pending_tickets,
         SUM(CASE WHEN status = 'en_proceso' OR status = 'En Proceso' THEN 1 ELSE 0 END) as in_process_tickets,
         SUM(CASE WHEN status = 'resuelto' OR status = 'Completado' THEN 1 ELSE 0 END) as resolved_tickets
-      FROM checklist_tickets
+      FROM 	reclamos
     `)
 
     const globalStats = {
