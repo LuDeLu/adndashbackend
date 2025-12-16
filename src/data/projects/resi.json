@@ -1,8 +1,213 @@
 {
   "project": "resi",
-  "owners": {},
-  "statuses": {},
-  "parkingAssignments": {},
-  "updatedAt": "",
+  "owners": {
+    "301": {
+      "name": "Maria Del Pilar Garcia Perez",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T13:10:21.663Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "302": {
+      "name": "Nuri Daniel Benattar",
+      "email": "-",
+      "phone": "11 3635 4137",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T13:11:10.623Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "402": {
+      "name": "Gaston Ricardo Elmo",
+      "email": "-",
+      "phone": "1131413976",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T13:12:43.191Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "501": {
+      "name": "Dario Ramon  Menalled",
+      "email": "rajamim@gmail.com",
+      "phone": "11 3878-1480",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T13:14:02.536Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "502": {
+      "name": "Claudio Martin  Nelli",
+      "email": "silvanamasciotta@hotmail.com",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T13:14:57.947Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "503": {
+      "name": "Juan Pablo Briattore",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T13:16:07.462Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "601": {
+      "name": "ADN ",
+      "email": "marketing2@adndevelopers.com.ar",
+      "phone": "11 3893-3260",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T13:17:49.607Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "602": {
+      "name": "Zodema S.A",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T13:18:27.256Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "603": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T13:17:55.627Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "702": {
+      "name": "Falak ",
+      "email": "gabysalama@gmail.com",
+      "phone": ".",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T13:19:34.481Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "902": {
+      "name": "Andres Bunge",
+      "email": "anbunge@yahoo.com",
+      "phone": "11 6903-5394",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T13:21:10.231Z",
+      "assignedBy": "Diego Stoler"
+    }
+  },
+  "statuses": {
+    "402": {
+      "id": "402",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T13:11:47.818Z",
+      "changedBy": "Diego Stoler",
+      "notes": "."
+    }
+  },
+  "parkingAssignments": {
+    "101": {
+      "parkingSpots": [
+        "A42"
+      ],
+      "assignedAt": "2025-12-16T12:44:14.695Z"
+    },
+    "102": {
+      "parkingSpots": [
+        "A43",
+        "A44"
+      ],
+      "assignedAt": "2025-12-16T12:44:30.247Z"
+    },
+    "103": {
+      "parkingSpots": [
+        "A45"
+      ],
+      "assignedAt": "2025-12-16T12:44:40.910Z"
+    },
+    "201": {
+      "parkingSpots": [
+        "A31",
+        "A32"
+      ],
+      "assignedAt": "2025-12-16T12:45:07.281Z"
+    },
+    "202": {
+      "parkingSpots": [
+        "A33",
+        "A34"
+      ],
+      "assignedAt": "2025-12-16T12:45:19.091Z"
+    },
+    "203": {
+      "parkingSpots": [
+        "A40",
+        "A41"
+      ],
+      "assignedAt": "2025-12-16T12:45:33.122Z"
+    },
+    "301": {
+      "parkingSpots": [
+        "A36",
+        "A37"
+      ],
+      "assignedAt": "2025-12-16T13:10:32.826Z"
+    },
+    "302": {
+      "parkingSpots": [
+        "A24"
+      ],
+      "assignedAt": "2025-12-16T13:11:21.915Z"
+    },
+    "402": {
+      "parkingSpots": [
+        "A38",
+        "A39"
+      ],
+      "assignedAt": "2025-12-16T13:12:56.775Z"
+    },
+    "501": {
+      "parkingSpots": [
+        "A20"
+      ],
+      "assignedAt": "2025-12-16T13:14:10.677Z"
+    },
+    "503": {
+      "parkingSpots": [
+        "A12"
+      ],
+      "assignedAt": "2025-12-16T13:16:20.202Z"
+    },
+    "601": {
+      "parkingSpots": [
+        "A16",
+        "A17"
+      ],
+      "assignedAt": "2025-12-16T13:20:10.654Z"
+    },
+    "602": {
+      "parkingSpots": [
+        "A8",
+        "A7"
+      ],
+      "assignedAt": "2025-12-16T13:18:38.959Z"
+    },
+    "603": {
+      "parkingSpots": [
+        "A21",
+        "A22"
+      ],
+      "assignedAt": "2025-12-16T13:20:33.295Z"
+    },
+    "702": {
+      "parkingSpots": [
+        "A10",
+        "A11"
+      ],
+      "assignedAt": "2025-12-16T13:19:44.099Z"
+    },
+    "902": {
+      "parkingSpots": [
+        "A27",
+        "A28"
+      ],
+      "assignedAt": "2025-12-16T13:21:22.656Z"
+    }
+  },
+  "updatedAt": "2025-12-16T13:21:22.656Z",
   "createdAt": ""
 }

@@ -1,8 +1,434 @@
 {
   "project": "boulevard",
-  "owners": {},
+  "owners": {
+    "201": {
+      "name": "Daniel Flexer",
+      "email": "-",
+      "phone": "11 4440-0584",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:52:49.438Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "202": {
+      "name": "Buri -",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:53:19.885Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "203": {
+      "name": "Oscar Exequiel Zeballos",
+      "email": "Exezeballos07@gmail.com",
+      "phone": "",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:53:43.338Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "301": {
+      "name": "Marcos Jabbaz",
+      "email": "",
+      "phone": "11 2240-8482",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:54:09.944Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "302": {
+      "name": "Luis  Grynwald",
+      "email": "-",
+      "phone": "11 4992 2482",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:55:09.827Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "303": {
+      "name": "Marcos Jabbaz",
+      "email": "",
+      "phone": "11 2240-8482",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:54:04.126Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "401": {
+      "name": "Daniel Salvador Hartmann",
+      "email": "majodionisio@gmail.com",
+      "phone": "11 6755 6446",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:55:40.067Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "402": {
+      "name": "Edgardo Hilu",
+      "email": "",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:56:10.493Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "403": {
+      "name": "Carlos Daniel  Nocito",
+      "email": "cnocitonco@gmail.com",
+      "phone": "+1 786 448-8925",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:56:34.711Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "501": {
+      "name": "Miguel Goldcher",
+      "email": "-",
+      "phone": "11 2856 9639",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:57:04.725Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "502": {
+      "name": "Alberto Michalewicz",
+      "email": "",
+      "phone": "11 4423 9163",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:57:56.596Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "503": {
+      "name": "Miguel Goldcher",
+      "email": "-",
+      "phone": "11 2856 9639",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:57:10.935Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "601": {
+      "name": "Adolfo Guitelman",
+      "email": "guitelman@gmail.com",
+      "phone": "11 4438 8274",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:58:20.370Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "602": {
+      "name": "Santiago Kevin Nutter",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:58:44.464Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "603": {
+      "name": "Maria Julieta  Trobanni",
+      "email": "jutrobbiani@hotmail.com",
+      "phone": "11 3241 3687",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:59:21.404Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "701": {
+      "name": "Gustavo Tenenbaum",
+      "email": "-",
+      "phone": "9 341 563 9519",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:00:18.101Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "702": {
+      "name": "Martin  Gutman",
+      "email": "-",
+      "phone": "11 4445-2109",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:08:02.281Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "703": {
+      "name": "Gabriel Lipovesky",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:08:32.610Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "801": {
+      "name": "Fabian  Janin",
+      "email": "Fjanin09@hotmail.com",
+      "phone": "11 4447-1738",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:13:57.727Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "802": {
+      "name": "Elisa Lee",
+      "email": "elisaluna@gmail.com",
+      "phone": "11 6470 6566",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:14:34.057Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "803": {
+      "name": "Fabian  Janin",
+      "email": "Fjanin09@hotmail.com",
+      "phone": "11 4447-1738",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:14:03.341Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "901": {
+      "name": "Lisardo Rosentahal",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:14:59.831Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "902": {
+      "name": "Julio Lenordi",
+      "email": "-",
+      "phone": "11 4421 6485",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:15:19.833Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "903": {
+      "name": "Luis  Grynwald",
+      "email": "-",
+      "phone": "11 4992 2482",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:18:19.571Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "1001": {
+      "name": "Fernando  Gandolfo",
+      "email": "fernando@linertec.com.ar",
+      "phone": "",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:15:43.510Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "1101": {
+      "name": "Diego Guillero  Merino",
+      "email": "diegogmerino@gmail.com",
+      "phone": "11 4402 4560",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:16:26.442Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "1102": {
+      "name": "Buri -",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:16:52.503Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "1201": {
+      "name": "Buri -",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:17:04.804Z",
+      "assignedBy": "Diego Stoler"
+    }
+  },
   "statuses": {},
-  "parkingAssignments": {},
-  "updatedAt": "",
+  "parkingAssignments": {
+    "101": {
+      "parkingSpots": [
+        "c9"
+      ],
+      "assignedAt": "2025-12-16T14:52:20.635Z"
+    },
+    "102": {
+      "parkingSpots": [
+        "c10"
+      ],
+      "assignedAt": "2025-12-16T14:52:26.963Z"
+    },
+    "201": {
+      "parkingSpots": [
+        "b11"
+      ],
+      "assignedAt": "2025-12-16T14:53:11.049Z"
+    },
+    "202": {
+      "parkingSpots": [
+        "b8"
+      ],
+      "assignedAt": "2025-12-16T14:53:33.792Z"
+    },
+    "203": {
+      "parkingSpots": [
+        "b5"
+      ],
+      "assignedAt": "2025-12-16T14:54:22.515Z"
+    },
+    "301": {
+      "parkingSpots": [
+        "c6"
+      ],
+      "assignedAt": "2025-12-16T14:54:49.843Z"
+    },
+    "302": {
+      "parkingSpots": [
+        "c7"
+      ],
+      "assignedAt": "2025-12-16T14:55:21.684Z"
+    },
+    "303": {
+      "parkingSpots": [
+        "b14"
+      ],
+      "assignedAt": "2025-12-16T14:54:39.111Z"
+    },
+    "401": {
+      "parkingSpots": [
+        "c13",
+        "c14"
+      ],
+      "assignedAt": "2025-12-16T14:55:56.506Z"
+    },
+    "402": {
+      "parkingSpots": [
+        "c15"
+      ],
+      "assignedAt": "2025-12-16T14:56:24.573Z"
+    },
+    "501": {
+      "parkingSpots": [
+        "c2"
+      ],
+      "assignedAt": "2025-12-16T14:57:29.478Z"
+    },
+    "502": {
+      "parkingSpots": [
+        "c5"
+      ],
+      "assignedAt": "2025-12-16T14:57:48.708Z"
+    },
+    "503": {
+      "parkingSpots": [
+        "c3"
+      ],
+      "assignedAt": "2025-12-16T14:57:22.759Z"
+    },
+    "601": {
+      "parkingSpots": [
+        "b6",
+        "b7"
+      ],
+      "assignedAt": "2025-12-16T14:58:31.297Z"
+    },
+    "602": {
+      "parkingSpots": [
+        "a11"
+      ],
+      "assignedAt": "2025-12-16T14:58:54.411Z"
+    },
+    "603": {
+      "parkingSpots": [
+        "c12"
+      ],
+      "assignedAt": "2025-12-16T15:00:02.864Z"
+    },
+    "701": {
+      "parkingSpots": [
+        "c4"
+      ],
+      "assignedAt": "2025-12-16T15:00:28.935Z"
+    },
+    "702": {
+      "parkingSpots": [
+        "b12"
+      ],
+      "assignedAt": "2025-12-16T15:08:18.851Z"
+    },
+    "703": {
+      "parkingSpots": [
+        "c1"
+      ],
+      "assignedAt": "2025-12-16T15:08:24.045Z"
+    },
+    "801": {
+      "parkingSpots": [
+        "b3"
+      ],
+      "assignedAt": "2025-12-16T15:14:19.681Z"
+    },
+    "802": {
+      "parkingSpots": [
+        "c8"
+      ],
+      "assignedAt": "2025-12-16T15:14:43.192Z"
+    },
+    "803": {
+      "parkingSpots": [
+        "b4"
+      ],
+      "assignedAt": "2025-12-16T15:14:12.913Z"
+    },
+    "901": {
+      "parkingSpots": [
+        "b13"
+      ],
+      "assignedAt": "2025-12-16T15:15:14.009Z"
+    },
+    "902": {
+      "parkingSpots": [
+        "b15"
+      ],
+      "assignedAt": "2025-12-16T15:15:24.794Z"
+    },
+    "903": {
+      "parkingSpots": [
+        "a1"
+      ],
+      "assignedAt": "2025-12-16T15:18:22.391Z"
+    },
+    "1001": {
+      "parkingSpots": [
+        "a7",
+        "a8"
+      ],
+      "assignedAt": "2025-12-16T15:15:53.871Z"
+    },
+    "1002": {
+      "parkingSpots": [
+        "b2"
+      ],
+      "assignedAt": "2025-12-16T15:16:12.064Z"
+    },
+    "1003": {
+      "parkingSpots": [
+        "b1"
+      ],
+      "assignedAt": "2025-12-16T15:16:06.795Z"
+    },
+    "1101": {
+      "parkingSpots": [
+        "a2",
+        "a3"
+      ],
+      "assignedAt": "2025-12-16T15:16:34.854Z"
+    },
+    "1102": {
+      "parkingSpots": [
+        "b9",
+        "b10"
+      ],
+      "assignedAt": "2025-12-16T15:20:03.518Z"
+    },
+    "1201": {
+      "parkingSpots": [
+        "a9",
+        "a10",
+        "a5",
+        "a6"
+      ],
+      "assignedAt": "2025-12-16T15:20:13.366Z"
+    },
+    "1202": {
+      "parkingSpots": [
+        "c11"
+      ],
+      "assignedAt": "2025-12-16T15:19:00.961Z"
+    }
+  },
+  "updatedAt": "2025-12-16T15:20:13.366Z",
   "createdAt": ""
 }

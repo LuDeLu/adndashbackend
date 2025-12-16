@@ -1,8 +1,296 @@
 {
   "project": "lagos",
-  "owners": {},
-  "statuses": {},
+  "owners": {
+    "A107": {
+      "name": "Leonardo Miguel Arca",
+      "email": "",
+      "phone": "11 3233 0356",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:09:16.963Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "A201": {
+      "name": "Raquel Da Rocha Vergara",
+      "email": "",
+      "phone": "",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:10:00.421Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "B101": {
+      "name": "Soledad  Pano",
+      "email": "-",
+      "phone": "11 4057 1929",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:10:55.207Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "B106": {
+      "name": "Nicolas  Guttlein",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:11:29.226Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "A202": {
+      "name": "Rosis ",
+      "email": "-",
+      "phone": "11 3659-0892",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:36:41.604Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "A203": {
+      "name": "Fernando Hinz Mollo",
+      "email": "",
+      "phone": "11 3656 1978",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:36:57.599Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "A204": {
+      "name": "Fernando Martinez",
+      "email": "",
+      "phone": "",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:37:20.069Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "A205": {
+      "name": "Marcelo  Farrall",
+      "email": "",
+      "phone": "11 4414 5145",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:38:14.990Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "B201": {
+      "name": "Fernando Daniel Farrall",
+      "email": "-",
+      "phone": "11 3196 2133",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:38:45.336Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "B207": {
+      "name": "Odile Maria  Rodriguez",
+      "email": "Odilerodriguez@hotmail.com",
+      "phone": "",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:40:09.555Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "A301": {
+      "name": "Agustín  Vasquez",
+      "email": "-",
+      "phone": "11 3656 1978",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:40:35.833Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "A303": {
+      "name": "Claudio Uriel Borgognoni",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:40:51.591Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "A304": {
+      "name": "Federico Stolbizer",
+      "email": "fstolbizer@gmail.com",
+      "phone": "11 3072 6075",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:41:03.453Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "A306": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:41:39.755Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "B301": {
+      "name": "Silvina Farrall",
+      "email": "-",
+      "phone": "11 3196 2133",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:42:21.732Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "B302": {
+      "name": "AlphaCentauri Agusto Tomas Bunge",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:42:29.324Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "C302": {
+      "name": "Gustavo Hector Horacio Diaz Quijano",
+      "email": "dquijano63@gmail.com",
+      "phone": " 11 5943-3311",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:42:57.164Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "C304": {
+      "name": "Pablo Lagrotta",
+      "email": "pablo.marketmedia@gmail.com",
+      "phone": "11 6102 7130",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:43:11.048Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "A401": {
+      "name": "Luis Sebastian Clerici",
+      "email": "lsclerici@hotmail.com",
+      "phone": "11 4141 3132",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:44:17.285Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "A402": {
+      "name": "Rafael Enrqiue  Sainz",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:44:27.958Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "A403": {
+      "name": "Nelida Del Carmen Vera",
+      "email": "-",
+      "phone": "11 3196 2133 (Fernan",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:44:52.984Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "A404": {
+      "name": "Luis Sebastian Clerici",
+      "email": "lsclerici@hotmail.com",
+      "phone": "11 4141 3132",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:45:10.607Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "B403": {
+      "name": "Ignacio Pedro Zumarraga",
+      "email": "izumarraga@msn.com.ar",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:45:24.027Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "C405": {
+      "name": "Pablo Gustavo Pascuttini",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:45:44.097Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "C407": {
+      "name": "Pablo  Goldstein",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:46:18.209Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "B503": {
+      "name": "Elbio  Stoler",
+      "email": "",
+      "phone": "11 4993-4983",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T14:47:55.067Z",
+      "assignedBy": "Diego Stoler"
+    }
+  },
+  "statuses": {
+    "A107": {
+      "id": "A107",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T14:09:08.221Z",
+      "changedBy": "Diego Stoler"
+    },
+    "A201": {
+      "id": "A201",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T14:09:46.925Z",
+      "changedBy": "Diego Stoler"
+    },
+    "B101": {
+      "id": "B101",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T14:10:49.255Z",
+      "changedBy": "Diego Stoler"
+    },
+    "B106": {
+      "id": "B106",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T14:11:19.844Z",
+      "changedBy": "Diego Stoler"
+    },
+    "A205": {
+      "id": "A205",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T14:37:41.370Z",
+      "changedBy": "Diego Stoler"
+    },
+    "B201": {
+      "id": "B201",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T14:38:35.362Z",
+      "changedBy": "Diego Stoler"
+    },
+    "B301": {
+      "id": "B301",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T14:42:14.084Z",
+      "changedBy": "Diego Stoler"
+    },
+    "C304": {
+      "id": "C304",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T14:43:29.254Z",
+      "changedBy": "Diego Stoler"
+    },
+    "A401": {
+      "id": "A401",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T14:44:09.573Z",
+      "changedBy": "Diego Stoler"
+    },
+    "A403": {
+      "id": "A403",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T14:44:42.759Z",
+      "changedBy": "Diego Stoler"
+    },
+    "A404": {
+      "id": "A404",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T14:45:02.763Z",
+      "changedBy": "Diego Stoler"
+    },
+    "C405": {
+      "id": "C405",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T14:46:07.017Z",
+      "changedBy": "Diego Stoler"
+    },
+    "B503": {
+      "id": "A503",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T14:46:34.856Z",
+      "changedBy": "Diego Stoler"
+    }
+  },
   "parkingAssignments": {},
-  "updatedAt": "",
+  "updatedAt": "2025-12-16T14:47:55.098Z",
   "createdAt": ""
 }

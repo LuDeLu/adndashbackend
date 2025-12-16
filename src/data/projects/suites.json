@@ -281,6 +281,14 @@
       "assignedAt": "2025-12-01T14:03:07.577Z",
       "assignedBy": "Diego Stoler"
     },
+    "308": {
+      "name": "Noriega ",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:27:29.787Z",
+      "assignedBy": "Diego Stoler"
+    },
     "309": {
       "name": "Patricio Eloy Fletcher",
       "email": "patriciofletcher@gmail.com",
@@ -449,6 +457,14 @@
       "assignedAt": "2025-12-01T15:10:43.233Z",
       "assignedBy": "Diego Stoler"
     },
+    "416": {
+      "name": "Dere ",
+      "email": "",
+      "phone": "",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:30:25.683Z",
+      "assignedBy": "Diego Stoler"
+    },
     "417": {
       "name": "Jose Emilio Salim Camel",
       "email": "camelsalim@yahoo.com.ar",
@@ -490,11 +506,11 @@
       "assignedBy": "Diego Stoler"
     },
     "422": {
-      "name": "Miguel Angel  Suarez",
-      "email": "-",
-      "phone": " 3100-1414",
+      "name": "Dere ",
+      "email": "",
+      "phone": "",
       "type": "COMPRADOR",
-      "assignedAt": "2025-12-01T15:11:10.153Z",
+      "assignedAt": "2025-12-16T15:29:38.626Z",
       "assignedBy": "Diego Stoler"
     },
     "423": {
@@ -506,11 +522,11 @@
       "assignedBy": "Diego Stoler"
     },
     "424": {
-      "name": "Nicolas  Mazzotti",
-      "email": "sistemas@adndevelopers.com.ar",
-      "phone": "31903762",
-      "type": "Inversor",
-      "assignedAt": "2025-12-01T15:44:56.250Z",
+      "name": "Miguel Angel  Suarez",
+      "email": "-",
+      "phone": " 3100-1414",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:28:57.551Z",
       "assignedBy": "Diego Stoler"
     },
     "501": {
@@ -519,6 +535,14 @@
       "phone": "31903762",
       "type": "Inversor",
       "assignedAt": "2025-12-01T13:57:22.151Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "504": {
+      "name": "Francisco Mir De Miguel",
+      "email": "Franciscomir95@gmail.com",
+      "phone": "2613361787",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:46:51.727Z",
       "assignedBy": "Diego Stoler"
     },
     "508": {
@@ -641,6 +665,14 @@
       "assignedAt": "2025-12-01T14:40:57.273Z",
       "assignedBy": "Diego Stoler"
     },
+    "608": {
+      "name": "Mauricio Gabriel Walter",
+      "email": "info@vulcanche.com.ar",
+      "phone": "9 2944 71-6171",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:51:17.247Z",
+      "assignedBy": "Diego Stoler"
+    },
     "611": {
       "name": "Sarotello Chirio",
       "email": "esartorello@yahoo.com.ar ferchirio@gmail.com",
@@ -735,6 +767,14 @@
       "phone": " 3100-1414",
       "type": "COMPRADOR",
       "assignedAt": "2025-12-01T15:15:06.929Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "701": {
+      "name": "Juan Manuel Nuñez",
+      "email": "juanmnunes10@gmail.com",
+      "phone": "11 6246 4251",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T15:56:50.315Z",
       "assignedBy": "Diego Stoler"
     },
     "704": {
@@ -931,6 +971,13 @@
     }
   },
   "statuses": {
+    "102": {
+      "id": "102",
+      "status": "DISPONIBLE",
+      "changedAt": "2025-12-15T14:50:45.374Z",
+      "changedBy": "Lu De Lu",
+      "notes": "asd"
+    },
     "310": {
       "id": "310",
       "status": "VENDIDO",
@@ -949,10 +996,35 @@
       "changedAt": "2025-12-01T13:56:37.357Z",
       "changedBy": "Diego Stoler"
     },
+    "504": {
+      "id": "504",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T15:47:15.762Z",
+      "changedBy": "Diego Stoler"
+    },
     "510": {
       "id": "510",
       "status": "VENDIDO",
       "changedAt": "2025-12-01T13:58:18.462Z",
+      "changedBy": "Diego Stoler"
+    },
+    "603": {
+      "id": "603",
+      "status": "DISPONIBLE",
+      "changedAt": "2025-12-16T15:50:07.403Z",
+      "changedBy": "Diego Stoler",
+      "notes": "n"
+    },
+    "608": {
+      "id": "608",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T15:51:31.237Z",
+      "changedBy": "Diego Stoler"
+    },
+    "701": {
+      "id": "701",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T15:57:04.156Z",
       "changedBy": "Diego Stoler"
     },
     "715": {
@@ -960,14 +1032,22 @@
       "status": "VENDIDO",
       "changedAt": "2025-12-01T14:19:41.775Z",
       "changedBy": "Diego Stoler"
+    },
+    "1017": {
+      "id": "1017",
+      "status": "DISPONIBLE",
+      "changedAt": "2025-12-16T18:39:54.286Z",
+      "changedBy": "Luciano Daniele"
     }
   },
   "parkingAssignments": {
     "1207": {
-      "parkingSpots": ["C60"],
+      "parkingSpots": [
+        "C60"
+      ],
       "assignedAt": "2025-12-01T13:39:56.539Z"
     }
   },
-  "updatedAt": "2025-12-01T15:48:07.526Z",
+  "updatedAt": "2025-12-16T18:39:54.362Z",
   "createdAt": ""
 }

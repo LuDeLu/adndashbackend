@@ -1,8 +1,71 @@
 {
   "project": "beruti",
-  "owners": {},
-  "statuses": {},
-  "updatedAt": "",
+  "owners": {
+    "101": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T12:39:52.316Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "104": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T12:39:59.986Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "301": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T12:41:16.399Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "303": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T12:41:31.076Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "304": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T12:41:23.460Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "402": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-16T12:41:57.076Z",
+      "assignedBy": "Diego Stoler"
+    }
+  },
+  "statuses": {
+    "301": {
+      "id": "301",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-16T12:40:55.873Z",
+      "changedBy": "Diego Stoler"
+    },
+    "401": {
+      "id": "401",
+      "status": "DISPONIBLE",
+      "changedAt": "2025-12-16T12:41:48.935Z",
+      "changedBy": "Diego Stoler",
+      "notes": "Liberar"
+    }
+  },
+  "updatedAt": "2025-12-16T12:41:57.208Z",
   "createdAt": "",
   "parkingAssignments": {}
 }
