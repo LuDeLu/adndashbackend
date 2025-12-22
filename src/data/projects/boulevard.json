@@ -226,7 +226,15 @@
       "assignedBy": "Diego Stoler"
     }
   },
-  "statuses": {},
+  "statuses": {
+    "402": {
+      "id": "402",
+      "status": "DISPONIBLE",
+      "changedAt": "2025-12-18T14:03:00.741Z",
+      "changedBy": "Diego Stoler",
+      "notes": "vende con nosotros"
+    }
+  },
   "parkingAssignments": {
     "101": {
       "parkingSpots": [
@@ -429,6 +437,6 @@
       "assignedAt": "2025-12-16T15:19:00.961Z"
     }
   },
-  "updatedAt": "2025-12-16T15:20:13.366Z",
+  "updatedAt": "2025-12-18T14:03:00.876Z",
   "createdAt": ""
 }

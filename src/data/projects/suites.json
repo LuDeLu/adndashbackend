@@ -401,6 +401,14 @@
       "assignedAt": "2025-12-01T15:08:56.727Z",
       "assignedBy": "Diego Stoler"
     },
+    "323": {
+      "name": "Millan  -",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-18T13:51:12.707Z",
+      "assignedBy": "Diego Stoler"
+    },
     "324": {
       "name": "Miguel Angel  Suarez",
       "email": "-",
@@ -641,6 +649,14 @@
       "assignedAt": "2025-12-01T14:10:30.109Z",
       "assignedBy": "Diego Stoler"
     },
+    "524": {
+      "name": "Millan  -",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-18T13:53:15.673Z",
+      "assignedBy": "Diego Stoler"
+    },
     "602": {
       "name": "Damian Ernesto Roguin",
       "email": "",
@@ -777,6 +793,22 @@
       "assignedAt": "2025-12-16T15:56:50.315Z",
       "assignedBy": "Diego Stoler"
     },
+    "702": {
+      "name": "Friedzon ",
+      "email": "",
+      "phone": "",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-18T13:54:50.873Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "703": {
+      "name": "Millan  -",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-18T13:55:06.890Z",
+      "assignedBy": "Diego Stoler"
+    },
     "704": {
       "name": "Patricio Eloy Fletcher",
       "email": "patriciofletcher@gmail.com",
@@ -857,6 +889,14 @@
       "assignedAt": "2025-12-01T14:12:29.640Z",
       "assignedBy": "Diego Stoler"
     },
+    "802": {
+      "name": "Friedzon ",
+      "email": "",
+      "phone": "",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-18T13:56:31.041Z",
+      "assignedBy": "Diego Stoler"
+    },
     "803": {
       "name": "Hector Rojas Decut",
       "email": "-",
@@ -903,6 +943,14 @@
       "phone": " 3100-1414",
       "type": "COMPRADOR",
       "assignedAt": "2025-12-01T15:15:34.741Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "811": {
+      "name": "Martin  Gutman",
+      "email": "-",
+      "phone": "11 4445-2109",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-18T13:57:20.972Z",
       "assignedBy": "Diego Stoler"
     },
     "812": {
@@ -961,6 +1009,22 @@
       "assignedAt": "2025-12-01T13:18:59.218Z",
       "assignedBy": "Diego Stoler"
     },
+    "1016": {
+      "name": "Emir Farah",
+      "email": "pfarah2001@yahoo.com.ar",
+      "phone": "11 6953 2930",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-18T13:59:40.030Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "1101": {
+      "name": "Elbio  Stoler",
+      "email": "",
+      "phone": "11 4993-4983",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-18T13:59:57.453Z",
+      "assignedBy": "Diego Stoler"
+    },
     "1109": {
       "name": "Santiago Brayer",
       "email": "santiagobrayer@gmail.com",
@@ -971,13 +1035,6 @@
     }
   },
   "statuses": {
-    "102": {
-      "id": "102",
-      "status": "DISPONIBLE",
-      "changedAt": "2025-12-15T14:50:45.374Z",
-      "changedBy": "Lu De Lu",
-      "notes": "asd"
-    },
     "310": {
       "id": "310",
       "status": "VENDIDO",
@@ -1033,6 +1090,19 @@
       "changedAt": "2025-12-01T14:19:41.775Z",
       "changedBy": "Diego Stoler"
     },
+    "1005": {
+      "id": "1005",
+      "status": "DISPONIBLE",
+      "changedAt": "2025-12-18T13:58:00.497Z",
+      "changedBy": "Diego Stoler",
+      "notes": "No esta vendida"
+    },
+    "1016": {
+      "id": "1016",
+      "status": "VENDIDO",
+      "changedAt": "2025-12-18T13:58:39.652Z",
+      "changedBy": "Diego Stoler"
+    },
     "1017": {
       "id": "1017",
       "status": "DISPONIBLE",
@@ -1048,6 +1118,6 @@
       "assignedAt": "2025-12-01T13:39:56.539Z"
     }
   },
-  "updatedAt": "2025-12-16T18:39:54.362Z",
+  "updatedAt": "2025-12-21T04:57:14.001Z",
   "createdAt": ""
 }

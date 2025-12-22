@@ -10,7 +10,7 @@ if (!fs.existsSync(DATA_DIR)) {
 }
 
 // Valid project names
-const VALID_PROJECTS = ["lagos", "apart", "beruti", "boulevard", "suites", "resi"]
+const VALID_PROJECTS = ["lagos", "apart", "beruti", "boulevard", "suites", "resi", "arcos"]
 
 // Get the file path for a project
 const getProjectFilePath = (projectName) => {
