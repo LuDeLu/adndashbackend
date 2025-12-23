@@ -1,8 +1,145 @@
 {
   "project": "arcos",
-  "owners": {},
+  "owners": {
+    "201": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:28:22.546Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "202": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:28:15.513Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "301": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:28:33.881Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "303": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:28:39.591Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "402": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:28:48.432Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "404": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:28:55.224Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "503": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:29:02.146Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "604": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:29:08.624Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "704": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:29:17.208Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "803": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:29:23.802Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "903": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:33:44.929Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "1101": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:33:56.700Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "1501": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:34:08.468Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "1601": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:34:16.547Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "1701": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:34:24.193Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "1901": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:34:33.813Z",
+      "assignedBy": "Diego Stoler"
+    },
+    "2301": {
+      "name": "Socios ADN",
+      "email": "-",
+      "phone": "-",
+      "type": "COMPRADOR",
+      "assignedAt": "2025-12-22T15:34:43.605Z",
+      "assignedBy": "Diego Stoler"
+    }
+  },
   "statuses": {},
   "parkingAssignments": {},
-  "updatedAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2025-12-22T15:34:43.416Z",
   "createdAt": "2025-01-01T00:00:00.000Z"
 }
